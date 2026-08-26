@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bardo — Production Agency</title>
+    <meta name="description" content="Bardo is a full-service production agency specializing in video, photography, and content creation.">
+    <link rel="icon" type="image/x-icon" href="navicon.ico">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">BARDO</a>
+            <div class="nav-links" id="navLinks">
+                <a href="#work" class="nav-link">Work</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link nav-link--cta">Get in Touch</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-inner">
+            <a href="#work" class="mobile-link">Work</a>
+            <a href="#services" class="mobile-link">Services</a>
+            <a href="#about" class="mobile-link">About</a>
+            <a href="#contact" class="mobile-link">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <img class="hero-image" src="hero.webp" alt="Bardo Production Hero">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-cta-bottom">
+            <a href="#work" class="btn btn--primary">View Our Work</a>
+            <a href="#contact" class="btn btn--secondary">Get in Touch</a>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <h2 class="section-title">What We Do</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" data-animate>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Video Production</h3>
+                    <p class="service-desc">From concept to final cut, we produce commercials, brand films, documentaries, and social content that captivates audiences.</p>
+                    <a href="#contact" class="service-link">Start a Project →</a>
+                </div>
+                <div class="service-card" data-animate>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"/>
+                            <path d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Photography</h3>
+                    <p class="service-desc">Editorial, product, lifestyle, and behind-the-scenes photography that tells your story with striking visual impact.</p>
+                    <a href="#contact" class="service-link">Start a Project →</a>
+                </div>
+                <div class="service-card" data-animate>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Content Creation</h3>
+                    <p class="service-desc">Short-form and long-form content optimized for Instagram, TikTok, YouTube, and every platform your audience lives on.</p>
+                    <a href="#contact" class="service-link">Start a Project →</a>
+                </div>
+                <div class="service-card" data-animate>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Strategy & Consulting</h3>
+                    <p class="service-desc">Creative direction, content strategy, and production planning from pre-production to delivery — we guide your vision.</p>
+                    <a href="#contact" class="service-link">Start a Project →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Work Section -->
+    <section class="work" id="work">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <h2 class="section-title">Selected Work</h2>
+            </div>
+            <div class="work-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="video">Video</button>
+                <button class="filter-btn" data-filter="photo">Photo</button>
+                <button class="filter-btn" data-filter="content">Content</button>
+            </div>
+            <div class="work-grid">
+                <div class="work-item work-item--large" data-category="video" data-animate>
+                    <div class="work-thumb">
+                        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1200&q=80" alt="Brand Film Project" loading="lazy">
+                        <div class="work-overlay">
+                            <span class="work-category">Video</span>
+                            <h3 class="work-title">Brand Film</h3>
+                            <p class="work-client">Confidential Client</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-item" data-category="photo" data-animate>
+                    <div class="work-thumb">
+                        <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=800&q=80" alt="Editorial Shoot" loading="lazy">
+                        <div class="work-overlay">
+                            <span class="work-category">Photo</span>
+                            <h3 class="work-title">Editorial Shoot</h3>
+                            <p class="work-client">Fashion Brand</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-item" data-category="content" data-animate>
+                    <div class="work-thumb">
+                        <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&q=80" alt="Social Campaign" loading="lazy">
+                        <div class="work-overlay">
+                            <span class="work-category">Content</span>
+                            <h3 class="work-title">Social Campaign</h3>
+                            <p class="work-client">Tech Startup</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-item" data-category="video" data-animate>
+                    <div class="work-thumb">
+                        <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&q=80" alt="Documentary Project" loading="lazy">
+                        <div class="work-overlay">
+                            <span class="work-category">Video</span>
+                            <h3 class="work-title">Documentary</h3>
+                            <p class="work-client">Non-Profit</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-item work-item--large" data-category="photo" data-animate>
+                    <div class="work-thumb">
+                        <img src="https://images.unsplash.com/photo-1505739998589-00fc462e7d0c?w=1200&q=80" alt="Product Photography" loading="lazy">
+                        <div class="work-overlay">
+                            <span class="work-category">Photo</span>
+                            <h3 class="work-title">Product Launch</h3>
+                            <p class="work-client">Luxury Brand</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-item" data-category="content" data-animate>
+                    <div class="work-thumb">
+                        <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&q=80" alt="Content Strategy" loading="lazy">
+                        <div class="work-overlay">
+                            <span class="work-category">Content</span>
+                            <h3 class="work-title">Content Series</h3>
+                            <p class="work-client">Music Artist</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+        <div class="container">
+            <div class="process-grid">
+                <div class="process-image" data-animate>
+                    <img src="process.webp" alt="Our Process" loading="lazy">
+                </div>
+                <div class="process-content" data-animate>
+                    <span class="section-number">03</span>
+                    <h2 class="section-title">How We Work</h2>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <span class="step-number">01</span>
+                            <div>
+                                <h4 class="step-title">Discovery</h4>
+                                <p class="step-desc">We learn your vision, audience, and goals to build a strategy that delivers.</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <span class="step-number">02</span>
+                            <div>
+                                <h4 class="step-title">Production</h4>
+                                <p class="step-desc">We bring it to life with our network of world-class creatives and producers.</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <span class="step-number">03</span>
+                            <div>
+                                <h4 class="step-title">Delivery</h4>
+                                <p class="step-desc">Polished content ready for every platform, optimized for maximum impact.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn btn--primary">Start a Project</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="testimonial">
+        <div class="container">
+            <div class="testimonial-content" data-animate>
+                <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                </svg>
+                <blockquote class="testimonial-quote">"Bardo transformed our brand's visual identity. Their attention to detail and creative vision exceeded every expectation."</blockquote>
+                <div class="testimonial-author">
+                    <strong>Client Name</strong>
+                    <span>CEO, Company</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">04</span>
+                <h2 class="section-title">About Bardo</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-text" data-animate>
+                    <p class="about-lead">We're a collective of filmmakers, photographers, and strategists who believe every brand has a story worth telling.</p>
+                    <p>Founded on the principle that great content starts with great understanding, Bardo partners with brands to create visual narratives that resonate, inspire, and drive results.</p>
+                    <p>From concept to delivery, we handle every aspect of production with meticulous care and creative excellence.</p>
+                </div>
+                <div class="about-image" data-animate>
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80" alt="Our Team" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content" data-animate>
+                <h2 class="cta-title">Ready to create<br>something?</h2>
+                <p class="cta-text">Let's talk about your next project.</p>
+                <a href="#contact" class="btn btn--primary btn--large">Book a Free Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">05</span>
+                <h2 class="section-title">Get in Touch</h2>
+            </div>
+            <div class="contact-grid">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="projectType">Project Type</label>
+                        <select id="projectType" name="projectType" required>
+                            <option value="" disabled selected>Select a service</option>
+                            <option value="video">Video Production</option>
+                            <option value="photo">Photography</option>
+                            <option value="content">Content Creation</option>
+                            <option value="strategy">Strategy & Consulting</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">Budget Range</label>
+                        <select id="budget" name="budget">
+                            <option value="" disabled selected>Select budget range</option>
+                            <option value="100">Under 100TND</option>
+                            <option value="100-250">100TND - 250TND</option>
+                            <option value="250-500">250TND - 500TND</option>
+                            <option value="500-1k">500TND - 1000TND</option>
+                            <option value="1k+">1000TND+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full">Send Message</button>
+                </form>
+                <div class="contact-info">
+                    <div class="contact-block">
+                        <h4>Email</h4>
+                        <a href="mailto:bardosproduction637@gmail.com">bardosproduction637@gmail.com</a>
+                    </div>
+                    <div class="contact-block">
+                        <h4>Follow Us</h4>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/_bardo.tn?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw==" class="social-link">Instagram</a>
+                            <a href="#" class="social-link">YouTube</a>
+                            <a href="#" class="social-link">LinkedIn</a>
+                            <a href="#" class="social-link">Twitter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <a href="#hero" class="footer-logo">BARDO</a>
+                <nav class="footer-nav">
+                    <a href="#work">Work</a>
+                    <a href="#services">Services</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+                <p class="footer-copy">&copy; 2026 Bardo. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -97,48 +97,66 @@ document.addEventListener('DOMContentLoaded', () => {
 
     animateElements.forEach(el => observer.observe(el));
 
-    // Contact form - sends email via FormSubmit
-    const contactForm = document.getElementById('contactForm');
-    const formBtn = contactForm.querySelector('button[type="submit"]');
-    const originalBtnText = formBtn.textContent;
+    // ========================================
+// BARDO - EmailJS config
+// Fill these in once you create your EmailJS account
+// ========================================
+const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+const EMAILJS_NOTIF_TEMPLATE_ID = 'YOUR_NOTIF_TEMPLATE_ID';
+const EMAILJS_AUTOREPLY_TEMPLATE_ID = 'YOUR_AUTOREPLY_TEMPLATE_ID';
 
-    contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
+// Contact form - sends notification + auto-reply via EmailJS
+const contactForm = document.getElementById('contactForm');
+const formBtn = contactForm.querySelector('button[type="submit"]');
+const originalBtnText = formBtn.textContent;
 
-        const formData = new FormData(contactForm);
-        const data = Object.fromEntries(formData.entries());
+emailjs.init(EMAILJS_PUBLIC_KEY);
 
-        formBtn.textContent = 'Sending...';
-        formBtn.disabled = true;
+contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-        try {
-            const res = await fetch('https://formsubmit.co/ajax/bardosproduction637@gmail.com', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
+    const formData = new FormData(contactForm);
+    const data = Object.fromEntries(formData.entries());
 
-            if (res.ok) {
-                formBtn.textContent = 'Message Sent!';
-                formBtn.style.background = '#2d5016';
-                contactForm.reset();
-            } else {
-                throw new Error('Send failed');
-            }
-        } catch (err) {
-            formBtn.textContent = 'Failed - Try Again';
-            formBtn.style.background = '#8a1a2b';
-        }
+    // Params for the notification email sent to your inbox
+    const notifParams = {
+        from_name: data.name,
+        from_email: data.email,
+        phone: data.phone || 'Not provided',
+        project_type: data.projectType,
+        budget: data.budget,
+        message: data.message,
+        reply_to: data.email
+    };
 
-        setTimeout(() => {
-            formBtn.textContent = originalBtnText;
-            formBtn.style.background = '';
-            formBtn.disabled = false;
-        }, 4000);
-    });
+    // Params for the auto-reply sent to the client
+    const replyParams = {
+        to_name: data.name,
+        to_email: data.email
+    };
+
+    formBtn.textContent = 'Sending...';
+    formBtn.disabled = true;
+
+    try {
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_NOTIF_TEMPLATE_ID, notifParams);
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_AUTOREPLY_TEMPLATE_ID, replyParams);
+
+        formBtn.textContent = 'Message Sent!';
+        formBtn.style.background = '#2d5016';
+        contactForm.reset();
+    } catch (err) {
+        formBtn.textContent = 'Failed - Try Again';
+        formBtn.style.background = '#8a1a2b';
+    }
+
+    setTimeout(() => {
+        formBtn.textContent = originalBtnText;
+        formBtn.style.background = '';
+        formBtn.disabled = false;
+    }, 4000);
+});
 
     // Parallax effect on hero
     window.addEventListener('scroll', () => {

@@ -705,6 +705,13 @@ img {
     color: var(--cream);
 }
 
+.form-group .optional {
+    font-size: 0.75rem;
+    color: var(--gray);
+    text-transform: none;
+    letter-spacing: 0.05em;
+}
+
 .form-group input,
 .form-group select,
 .form-group textarea {

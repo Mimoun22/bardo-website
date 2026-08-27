@@ -97,27 +97,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
     animateElements.forEach(el => observer.observe(el));
 
-    // Contact form
+    // Contact form - sends email via FormSubmit
     const contactForm = document.getElementById('contactForm');
-    contactForm.addEventListener('submit', (e) => {
+    const formBtn = contactForm.querySelector('button[type="submit"]');
+    const originalBtnText = formBtn.textContent;
+
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         const formData = new FormData(contactForm);
-        const data = Object.fromEntries(formData);
-        
-        // Show success message
-        const btn = contactForm.querySelector('button[type="submit"]');
-        const originalText = btn.textContent;
-        btn.textContent = 'Message Sent!';
-        btn.style.background = '#2d5016';
-        
+        const data = Object.fromEntries(formData.entries());
+
+        formBtn.textContent = 'Sending...';
+        formBtn.disabled = true;
+
+        try {
+            const res = await fetch('https://formsubmit.co/ajax/bardosproduction637@gmail.com', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (res.ok) {
+                formBtn.textContent = 'Message Sent!';
+                formBtn.style.background = '#2d5016';
+                contactForm.reset();
+            } else {
+                throw new Error('Send failed');
+            }
+        } catch (err) {
+            formBtn.textContent = 'Failed - Try Again';
+            formBtn.style.background = '#8a1a2b';
+        }
+
         setTimeout(() => {
-            btn.textContent = originalText;
-            btn.style.background = '';
-            contactForm.reset();
-        }, 3000);
-        
-        console.log('Form submitted:', data);
+            formBtn.textContent = originalBtnText;
+            formBtn.style.background = '';
+            formBtn.disabled = false;
+        }, 4000);
     });
 
     // Parallax effect on hero

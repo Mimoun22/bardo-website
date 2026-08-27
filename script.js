@@ -119,10 +119,12 @@ contactForm.addEventListener('submit', async (e) => {
     const formData = new FormData(contactForm);
     const data = Object.fromEntries(formData.entries());
 
-    // Params for the notification email sent to your inbox
-    const notifParams = {
+    // Build the full set of params once, send to both templates
+    const params = {
         from_name: data.name,
         from_email: data.email,
+        to_name: data.name,
+        to_email: data.email,
         phone: data.phone || 'Not provided',
         project_type: data.projectType,
         budget: data.budget,
@@ -130,18 +132,12 @@ contactForm.addEventListener('submit', async (e) => {
         reply_to: data.email
     };
 
-    // Params for the auto-reply sent to the client
-    const replyParams = {
-        to_name: data.name,
-        to_email: data.email
-    };
-
     formBtn.textContent = 'Sending...';
     formBtn.disabled = true;
 
     try {
-        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_NOTIF_TEMPLATE_ID, notifParams);
-        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_AUTOREPLY_TEMPLATE_ID, replyParams);
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_NOTIF_TEMPLATE_ID, params);
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_AUTOREPLY_TEMPLATE_ID, params);
 
         formBtn.textContent = 'Message Sent!';
         formBtn.style.background = '#2d5016';

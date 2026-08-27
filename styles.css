@@ -455,102 +455,66 @@ img {
     color: var(--cream);
 }
 
-/* Work Section */
-.work {
+/* Team Section */
+.team {
     padding: 8rem 0;
     background: var(--black-light);
 }
 
-.work-filters {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
-}
-
-.filter-btn {
-    padding: 0.75rem 1.5rem;
-    background: transparent;
-    border: 1px solid rgba(245, 245, 220, 0.2);
-    color: var(--cream);
-    font-size: 0.85rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    transition: all 0.3s var(--transition);
-}
-
-.filter-btn:hover,
-.filter-btn.active {
-    background: var(--crimson);
-    border-color: var(--crimson);
-}
-
-.work-grid {
+.team-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
 }
 
-.work-item {
+.team-member {
+    text-align: center;
+}
+
+.team-photo {
     position: relative;
     overflow: hidden;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    aspect-ratio: 3 / 4;
 }
 
-.work-item--large {
-    grid-column: span 2;
-}
-
-.work-thumb {
-    position: relative;
-    height: 100%;
-    min-height: 300px;
-    overflow: hidden;
-}
-
-.work-thumb img {
+.team-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.6s var(--transition);
 }
 
-.work-item:hover .work-thumb img {
+.team-member:hover .team-photo img {
     transform: scale(1.05);
 }
 
-.work-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(26, 26, 26, 0.9) 0%, transparent 60%);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 2rem;
-    opacity: 0;
-    transition: opacity 0.4s var(--transition);
-}
-
-.work-item:hover .work-overlay {
-    opacity: 1;
-}
-
-.work-category {
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--crimson);
-    margin-bottom: 0.5rem;
-}
-
-.work-title {
+.team-name {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     margin-bottom: 0.25rem;
 }
 
-.work-client {
-    color: var(--gray);
+.team-role {
+    color: var(--crimson);
     font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.team-portfolio {
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    color: var(--cream);
+    opacity: 0.7;
+    transition: all 0.3s var(--transition);
+}
+
+.team-portfolio:hover {
+    opacity: 1;
+    color: var(--crimson);
 }
 
 /* Process Section */
@@ -885,12 +849,8 @@ img {
         grid-template-columns: 1fr;
     }
 
-    .work-grid {
+    .team-grid {
         grid-template-columns: repeat(2, 1fr);
-    }
-
-    .work-item--large {
-        grid-column: span 2;
     }
 
     .process-grid,
@@ -919,16 +879,8 @@ img {
         align-items: center;
     }
 
-    .work-grid {
+    .team-grid {
         grid-template-columns: 1fr;
-    }
-
-    .work-item--large {
-        grid-column: span 1;
-    }
-
-    .work-thumb {
-        min-height: 250px;
     }
 
     .clients-logos {

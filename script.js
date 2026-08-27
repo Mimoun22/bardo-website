@@ -101,10 +101,10 @@ document.addEventListener('DOMContentLoaded', () => {
 // BARDO - EmailJS config
 // Fill these in once you create your EmailJS account
 // ========================================
-const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
-const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
-const EMAILJS_NOTIF_TEMPLATE_ID = 'YOUR_NOTIF_TEMPLATE_ID';
-const EMAILJS_AUTOREPLY_TEMPLATE_ID = 'YOUR_AUTOREPLY_TEMPLATE_ID';
+const EMAILJS_PUBLIC_KEY = 'MWp837iM43rsVAVwL';
+const EMAILJS_SERVICE_ID = 'service_dsbnpzq';
+const EMAILJS_NOTIF_TEMPLATE_ID = 'template_jz2qw3r';
+const EMAILJS_AUTOREPLY_TEMPLATE_ID = 'template_vh3sc8d';
 
 // Contact form - sends notification + auto-reply via EmailJS
 const contactForm = document.getElementById('contactForm');

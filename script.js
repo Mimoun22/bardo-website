@@ -121,15 +121,19 @@ contactForm.addEventListener('submit', async (e) => {
 
     // Build the full set of params once, send to both templates
     const params = {
+        name: data.name,
         from_name: data.name,
-        from_email: data.email,
         to_name: data.name,
+        email: data.email,
+        from_email: data.email,
         to_email: data.email,
+        reply_to: data.email,
         phone: data.phone || 'Not provided',
         project_type: data.projectType,
+        projecttype: data.projectType,
         budget: data.budget,
         message: data.message,
-        reply_to: data.email
+        subject: 'New message from Bardo website'
     };
 
     formBtn.textContent = 'Sending...';

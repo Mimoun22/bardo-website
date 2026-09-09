@@ -7,7 +7,6 @@ const I18N = {
         nav: {
             team: 'Team',
             services: 'Services',
-            about: 'About',
             contact: 'Contact'
         },
         hero: {
@@ -46,9 +45,6 @@ const I18N = {
             step3_desc: 'You receive your content, fast and ready to use.',
             cta: 'Contact us'
         },
-        about: {
-            number: '04'
-        },
         cta: {
             title: 'Ready to start?',
             text: 'Call us or write to us on WhatsApp',
@@ -56,7 +52,7 @@ const I18N = {
             phone: 'Call us'
         },
         contact: {
-            number: '05',
+            number: '04',
             title: 'Contact us',
             name: 'Name',
             name_ph: 'Your name',
@@ -99,7 +95,6 @@ const I18N = {
         nav: {
             team: 'Equipe',
             services: 'Services',
-            about: 'A propos',
             contact: 'Contact'
         },
         hero: {
@@ -138,9 +133,6 @@ const I18N = {
             step3_desc: 'Recevez votre contenu, rapidement et prêt à l’emploi.',
             cta: 'Contactez-nous'
         },
-        about: {
-            number: '04'
-        },
         cta: {
             title: 'Prêt à commencer ?',
             text: 'Appelez-nous ou ecrivez-nous sur WhatsApp',
@@ -148,7 +140,7 @@ const I18N = {
             phone: 'Appelez-nous'
         },
         contact: {
-            number: '05',
+            number: '04',
             title: 'Contactez-nous',
             name: 'Nom',
             name_ph: 'Votre nom',
@@ -191,7 +183,6 @@ const I18N = {
         nav: {
             team: 'الفريق',
             services: 'خدماتنا',
-            about: 'من نحن',
             contact: 'اتصل بنا'
         },
         hero: {
@@ -230,9 +221,6 @@ const I18N = {
             step3_desc: 'تصلك أعمالك بسرعة وجاهزة للاستعمال.',
             cta: 'اتصل بنا'
         },
-        about: {
-            number: '٠٤'
-        },
         cta: {
             title: 'مستعد للبداية؟',
             text: 'اتصل بنا أو راسلنا على واتساب',
@@ -240,7 +228,7 @@ const I18N = {
             phone: 'اتصل بنا'
         },
         contact: {
-            number: '٠٥',
+            number: '٠٤',
             title: 'اتصل بنا',
             name: 'الاسم',
             name_ph: 'اسمك',

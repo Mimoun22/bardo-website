@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bardo — Production Agency</title>
-    <meta name="description" content="Bardo is a full-service production agency specializing in video, photography, and content creation.">
+    <title>Bardo — Video, Photo & Design Agency</title>
+    <meta name="description" content="Bardo is a production agency in Tunisia specializing in video, photography, content and graphic design.">
     <link rel="icon" type="image/x-icon" href="navicon.ico">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -13,15 +13,27 @@
     <div class="cursor" id="cursor"></div>
     <div class="cursor-follower" id="cursorFollower"></div>
 
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/21695052879" target="_blank" rel="noopener" class="whatsapp-float" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
     <!-- Navigation -->
     <nav class="nav" id="nav">
         <div class="nav-inner">
             <a href="#hero" class="nav-logo">BARDO</a>
             <div class="nav-links" id="navLinks">
-                <a href="#team" class="nav-link">Team</a>
-                <a href="#services" class="nav-link">Services</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#contact" class="nav-link nav-link--cta">Get in Touch</a>
+                <a href="#team" class="nav-link" data-i18n="nav.team">Team</a>
+                <a href="#services" class="nav-link" data-i18n="nav.services">Services</a>
+                <a href="#about" class="nav-link" data-i18n="nav.about">About</a>
+                <a href="#contact" class="nav-link nav-link--cta" data-i18n="nav.contact">Contact</a>
+                <div class="lang-switch" id="langSwitchDesktop">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="fr">FR</button>
+                    <button class="lang-btn" data-lang="ar">AR</button>
+                </div>
             </div>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
                 <span></span>
@@ -33,10 +45,15 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-inner">
-            <a href="#team" class="mobile-link">Team</a>
-            <a href="#services" class="mobile-link">Services</a>
-            <a href="#about" class="mobile-link">About</a>
-            <a href="#contact" class="mobile-link">Contact</a>
+            <a href="#team" class="mobile-link" data-i18n="nav.team">Team</a>
+            <a href="#services" class="mobile-link" data-i18n="nav.services">Services</a>
+            <a href="#about" class="mobile-link" data-i18n="nav.about">About</a>
+            <a href="#contact" class="mobile-link" data-i18n="nav.contact">Contact</a>
+            <div class="lang-switch">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="fr">FR</button>
+                <button class="lang-btn" data-lang="ar">AR</button>
+            </div>
         </div>
     </div>
 
@@ -46,11 +63,17 @@
             <img class="hero-image" src="hero.webp" alt="Bardo Production Hero">
             <div class="hero-overlay"></div>
         </div>
-<div class="hero-cta-bottom">
-            <a href="#team" class="btn btn--primary btn--hero">View Our Team</a>
+        <div class="hero-content">
+            <p class="hero-tagline" data-i18n="hero.tagline">Bardo Production — Tunisia</p>
+            <h1 class="hero-title" data-i18n="hero.title">We make your videos, take your photos & design your brand</h1>
+            <p class="hero-subtitle" data-i18n="hero.subtitle">Simple, fast and professional</p>
+            <div class="hero-cta-bottom">
+                <a href="https://wa.me/21695052879" target="_blank" rel="noopener" class="btn btn--whatsapp btn--hero" data-i18n="hero.cta_whatsapp">WhatsApp us</a>
+                <a href="#team" class="btn btn--primary btn--hero" data-i18n="hero.cta_team">See our team</a>
+            </div>
         </div>
         <div class="hero-scroll">
-            <span>Scroll</span>
+            <span data-i18n="hero.scroll">Scroll</span>
             <div class="scroll-line"></div>
         </div>
     </section>
@@ -59,8 +82,8 @@
     <section class="services" id="services">
         <div class="container">
             <div class="section-header">
-                <span class="section-number">01</span>
-                <h2 class="section-title">What We Do</h2>
+                <span class="section-number" data-i18n="services.number">01</span>
+                <h2 class="section-title" data-i18n="services.title">What we do</h2>
             </div>
             <div class="services-grid">
                 <div class="service-card" data-animate>
@@ -69,9 +92,9 @@
                             <path d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/>
                         </svg>
                     </div>
-                    <h3 class="service-title">Video Production</h3>
-                    <p class="service-desc">From concept to final cut, we produce commercials, brand films, documentaries, and social content that captivates audiences.</p>
-                    <a href="#contact" class="service-link">Start a Project →</a>
+                    <h3 class="service-title" data-i18n="services.video_title">Video Production</h3>
+                    <p class="service-desc" data-i18n="services.video_desc">From idea to finished video. Ads, documentaries and content for social media.</p>
+                    <a href="#contact" class="service-link" data-i18n="services.cta">Contact us</a>
                 </div>
                 <div class="service-card" data-animate>
                     <div class="service-icon">
@@ -80,9 +103,9 @@
                             <path d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"/>
                         </svg>
                     </div>
-                    <h3 class="service-title">Photography</h3>
-                    <p class="service-desc">Editorial, product, lifestyle, and behind-the-scenes photography that tells your story with striking visual impact.</p>
-                    <a href="#contact" class="service-link">Start a Project →</a>
+                    <h3 class="service-title" data-i18n="services.photo_title">Photography</h3>
+                    <p class="service-desc" data-i18n="services.photo_desc">Photos for your business, products and events. We capture your best moments.</p>
+                    <a href="#contact" class="service-link" data-i18n="services.cta">Contact us</a>
                 </div>
                 <div class="service-card" data-animate>
                     <div class="service-icon">
@@ -90,9 +113,9 @@
                             <path d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605"/>
                         </svg>
                     </div>
-                    <h3 class="service-title">Content Creation</h3>
-                    <p class="service-desc">Short-form and long-form content optimized for Instagram, TikTok, YouTube, and every platform your audience lives on.</p>
-                    <a href="#contact" class="service-link">Start a Project →</a>
+                    <h3 class="service-title" data-i18n="services.content_title">Content Creation</h3>
+                    <p class="service-desc" data-i18n="services.content_desc">Content for Instagram, TikTok, YouTube and all your social media.</p>
+                    <a href="#contact" class="service-link" data-i18n="services.cta">Contact us</a>
                 </div>
                 <div class="service-card" data-animate>
                     <div class="service-icon">
@@ -101,9 +124,9 @@
                             <path d="M15 15l6.03-6.03a1.5 1.5 0 000-2.12l-2.12-2.12a1.5 1.5 0 00-2.12 0L10.5 9.75"/>
                         </svg>
                     </div>
-                    <h3 class="service-title">Graphic Design</h3>
-                    <p class="service-desc">Logos, branding, posters, and visual identity crafted by our designers — every pixel designed to make your brand unforgettable.</p>
-                    <a href="#contact" class="service-link">Start a Project →</a>
+                    <h3 class="service-title" data-i18n="services.design_title">Graphic Design</h3>
+                    <p class="service-desc" data-i18n="services.design_desc">Logos, posters and brand identity designed by our designers.</p>
+                    <a href="#contact" class="service-link" data-i18n="services.cta">Contact us</a>
                 </div>
             </div>
         </div>
@@ -113,13 +136,13 @@
     <section class="team" id="team">
         <div class="container">
             <div class="section-header">
-                <span class="section-number">02</span>
-                <h2 class="section-title">Our Team</h2>
+                <span class="section-number" data-i18n="team.number">02</span>
+                <h2 class="section-title" data-i18n="team.title">Our team</h2>
             </div>
             <div class="team-grid">
                 <div class="team-member" data-animate>
                     <div class="team-photo">
-                        <img src="moemen.png" alt="Team Member" loading="lazy">
+                        <img src="moemen.png" alt="Moemen Billah Bayar" loading="lazy">
                     </div>
                     <h3 class="team-name">Moemen Billah Bayar</h3>
                     <p class="team-role">Video Editor</p>
@@ -127,29 +150,12 @@
                 </div>
                 <div class="team-member" data-animate>
                     <div class="team-photo">
-                        <img src="moussi.png" alt="Team Member" loading="lazy">
+                        <img src="moussi.png" alt="Dali Moussi" loading="lazy">
                     </div>
                     <h3 class="team-name">Dali Moussi</h3>
                     <p class="team-role">Graphic Designer</p>
                     <a href="https://m0uss1.vercel.app/" target="_blank" rel="noopener" class="team-portfolio">View Portfolio →</a>
                 </div>
-               <!-- <div class="team-member" data-animate>
-                    <div class="team-photo">
-                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80" alt="Team Member" loading="lazy">
-                    </div>
-                    <h3 class="team-name">Member Name</h3>
-                    <p class="team-role">Editor</p>
-                    <a href="#" target="_blank" rel="noopener" class="team-portfolio">View Portfolio →</a>
-                </div>
-                <div class="team-member" data-animate>
-                    <div class="team-photo">
-                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=80" alt="Team Member" loading="lazy">
-                    </div>
-                    <h3 class="team-name">Member Name</h3>
-                    <p class="team-role">Creative Director</p>
-                    <a href="#" target="_blank" rel="noopener" class="team-portfolio">View Portfolio →</a>
-                </div>
-                -->
             </div>
         </div>
     </section>
@@ -162,48 +168,32 @@
                     <img src="process.webp" alt="Our Process" loading="lazy">
                 </div>
                 <div class="process-content" data-animate>
-                    <span class="section-number">03</span>
-                    <h2 class="section-title">How We Work</h2>
+                    <span class="section-number" data-i18n="process.number">03</span>
+                    <h2 class="section-title" data-i18n="process.title">How we work</h2>
                     <div class="process-steps">
                         <div class="process-step">
                             <span class="step-number">01</span>
                             <div>
-                                <h4 class="step-title">Discovery</h4>
-                                <p class="step-desc">We learn your vision, audience, and goals to build creative content that delivers.</p>
+                                <h4 class="step-title" data-i18n="process.step1_title">We listen</h4>
+                                <p class="step-desc" data-i18n="process.step1_desc">Tell us about your project. We listen and understand your needs.</p>
                             </div>
                         </div>
                         <div class="process-step">
                             <span class="step-number">02</span>
                             <div>
-                                <h4 class="step-title">Production</h4>
-                                <p class="step-desc">We bring it to life with our network of world-class creatives and producers.</p>
+                                <h4 class="step-title" data-i18n="process.step2_title">We create</h4>
+                                <p class="step-desc" data-i18n="process.step2_desc">Our team produces your videos, photos or designs.</p>
                             </div>
                         </div>
                         <div class="process-step">
                             <span class="step-number">03</span>
                             <div>
-                                <h4 class="step-title">Delivery</h4>
-                                <p class="step-desc">Polished content ready for every platform, optimized for maximum impact.</p>
+                                <h4 class="step-title" data-i18n="process.step3_title">We deliver</h4>
+                                <p class="step-desc" data-i18n="process.step3_desc">You receive your content, fast and ready to use.</p>
                             </div>
                         </div>
                     </div>
-                    <a href="#contact" class="btn btn--primary">Start a Project</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonial Section -->
-    <section class="testimonial">
-        <div class="container">
-            <div class="testimonial-content" data-animate>
-                <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-                </svg>
-                <blockquote class="testimonial-quote">"Bardo transformed our brand's visual identity. Their attention to detail and creative vision exceeded every expectation."</blockquote>
-                <div class="testimonial-author">
-                    <strong>Client Name</strong>
-                    <span>CEO, Company</span>
+                    <a href="#contact" class="btn btn--primary" data-i18n="process.cta">Contact us</a>
                 </div>
             </div>
         </div>
@@ -213,17 +203,16 @@
     <section class="about" id="about">
         <div class="container">
             <div class="section-header">
-                <span class="section-number">04</span>
-                <h2 class="section-title">About Bardo</h2>
+                <span class="section-number" data-i18n="about.number">04</span>
+                <h2 class="section-title" data-i18n="nav.about">About</h2>
             </div>
             <div class="about-grid">
                 <div class="about-text" data-animate>
-                    <p class="about-lead">We're a collective of filmmakers, photographers, and designers who believe every brand has a story worth telling.</p>
-                    <p>Founded on the principle that great content starts with great understanding, Bardo partners with brands to create visual narratives that resonate, inspire, and drive results.</p>
-                    <p>From concept to delivery, we handle every aspect of production with meticulous care and creative excellence.</p>
+                    <p class="about-lead">Bardo is a young production agency in Tunisia. We make videos, take photos, create content and design brands.</p>
+                    <p>We are a small team of editors, photographers and designers who love what we do. Tell us your idea, and we bring it to life.</p>
                 </div>
                 <div class="about-image" data-animate>
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80" alt="Our Team" loading="lazy">
+                    <img src="hero.webp" alt="Bardo" loading="lazy">
                 </div>
             </div>
         </div>
@@ -233,9 +222,12 @@
     <section class="cta-section">
         <div class="container">
             <div class="cta-content" data-animate>
-                <h2 class="cta-title">Ready to create<br>something?</h2>
-                <p class="cta-text">Let's talk about your next project.</p>
-                <a href="#contact" class="btn btn--primary btn--large">Book a Free Consultation</a>
+                <h2 class="cta-title" data-i18n="cta.title">Ready to start?</h2>
+                <p class="cta-text" data-i18n="cta.text">Call us or write to us on WhatsApp</p>
+                <div class="cta-buttons">
+                    <a href="tel:+21695052879" class="btn btn--primary btn--large" data-i18n="cta.phone">Call us</a>
+                    <a href="https://wa.me/21695052879" target="_blank" rel="noopener" class="btn btn--whatsapp btn--large" data-i18n="cta.whatsapp">WhatsApp us</a>
+                </div>
             </div>
         </div>
     </section>
@@ -244,62 +236,70 @@
     <section class="contact" id="contact">
         <div class="container">
             <div class="section-header">
-                <span class="section-number">05</span>
-                <h2 class="section-title">Get in Touch</h2>
+                <span class="section-number" data-i18n="contact.number">05</span>
+                <h2 class="section-title" data-i18n="contact.title">Contact us</h2>
             </div>
             <div class="contact-grid">
                 <form class="contact-form" id="contactForm">
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required placeholder="Your name">
+                        <label for="name" data-i18n="contact.name">Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Your name" data-i18n="contact.name_ph">
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required placeholder="your@email.com">
+                        <label for="email" data-i18n="contact.email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="youremail@gmail.com" data-i18n="contact.email_ph">
                     </div>
                     <div class="form-group">
-                        <label for="phone">Phone <span class="optional">(optional)</span></label>
-                        <input type="tel" id="phone" name="phone" placeholder="+216 00 000 000">
+                        <label for="phone" data-i18n="contact.phone">Phone (optional)</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+216 00 000 000" data-i18n="contact.phone_ph">
                     </div>
                     <div class="form-group">
-                        <label for="projectType">Project Type</label>
+                        <label for="projectType" data-i18n="contact.project">Project type</label>
                         <select id="projectType" name="projectType" required>
-                            <option value="" disabled selected>Select a service</option>
-                            <option value="video">Video Production</option>
-                            <option value="photo">Photography</option>
-                            <option value="content">Content Creation</option>
-                            <option value="design">Graphic Design</option>
-                            <option value="other">Other</option>
+                            <option value="" disabled selected data-i18n="contact.project_ph">Choose a service</option>
+                            <option value="video" data-i18n="contact.project_video">Video Production</option>
+                            <option value="photo" data-i18n="contact.project_photo">Photography</option>
+                            <option value="content" data-i18n="contact.project_content">Content Creation</option>
+                            <option value="design" data-i18n="contact.project_design">Graphic Design</option>
+                            <option value="other" data-i18n="contact.project_other">Other</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="budget">Budget Range</label>
+                        <label for="budget" data-i18n="contact.budget">Budget</label>
                         <select id="budget" name="budget">
-                            <option value="" disabled selected>Select budget range</option>
-                            <option value="100">Under 100TND</option>
-                            <option value="100-250">100TND - 250TND</option>
-                            <option value="250-500">250TND - 500TND</option>
-                            <option value="500-1k">500TND - 1000TND</option>
-                            <option value="1k+">1000TND+</option>
+                            <option value="" disabled selected data-i18n="contact.budget_ph">Choose your budget</option>
+                            <option value="100" data-i18n="contact.budget_1">Under 100 TND</option>
+                            <option value="100-250" data-i18n="contact.budget_2">100 - 250 TND</option>
+                            <option value="250-500" data-i18n="contact.budget_3">250 - 500 TND</option>
+                            <option value="500-1k" data-i18n="contact.budget_4">500 - 1000 TND</option>
+                            <option value="1k+" data-i18n="contact.budget_5">More than 1000 TND</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project..."></textarea>
+                        <label for="message" data-i18n="contact.message">Message</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project..." data-i18n="contact.message_ph"></textarea>
                     </div>
-                    <button type="submit" class="btn btn--primary btn--full">Send Message</button>
+                    <button type="submit" class="btn btn--primary btn--full" data-i18n="contact.send">Send</button>
                 </form>
                 <div class="contact-info">
                     <div class="contact-block">
-                        <h4>Email</h4>
+                        <h4 data-i18n="contact.call">Call us</h4>
+                        <a href="tel:+21695052879" class="contact-phone">+216 95 052 879</a>
+                    </div>
+                    <div class="contact-block">
+                        <h4 data-i18n="contact.email_block">Email</h4>
                         <a href="mailto:bardosproduction637@gmail.com">bardosproduction637@gmail.com</a>
                     </div>
                     <div class="contact-block">
-                        <h4>Follow Us</h4>
+                        <h4 data-i18n="contact.whatsapp">WhatsApp</h4>
+                        <a href="https://wa.me/21695052879" target="_blank" rel="noopener" class="contact-phone">+216 95 052 879</a>
+                    </div>
+                    <div class="contact-block">
+                        <h4 data-i18n="contact.follow">Follow us</h4>
                         <div class="social-links">
-                            <a href="https://www.instagram.com/_bardo.tn?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw==" class="social-link">Instagram</a>
-                            <a href="https://youtube.com/@bardoproduction?si=58GoMHILoJia8A-w" class="social-link">YouTube</a>
-                            <a href="#" class="social-link">Whatsapp</a>
+                            <a href="https://www.instagram.com/_bardo.tn" target="_blank" rel="noopener" class="social-link">Instagram</a>
+                            <a href="https://youtube.com/@bardoproduction" target="_blank" rel="noopener" class="social-link">YouTube</a>
+                            <a href="https://wa.me/21695052879" target="_blank" rel="noopener" class="social-link">WhatsApp</a>
                         </div>
                     </div>
                 </div>
@@ -313,16 +313,17 @@
             <div class="footer-inner">
                 <a href="#hero" class="footer-logo">BARDO</a>
                 <nav class="footer-nav">
-                    <a href="#team">Team</a>
-                    <a href="#services">Services</a>
-                    <a href="#about">About</a>
-                    <a href="#contact">Contact</a>
+                    <a href="#team" data-i18n="nav.team">Team</a>
+                    <a href="#services" data-i18n="nav.services">Services</a>
+                    <a href="#about" data-i18n="nav.about">About</a>
+                    <a href="#contact" data-i18n="nav.contact">Contact</a>
                 </nav>
-                <p class="footer-copy">&copy; 2026 Bardo. All rights reserved.</p>
+                <p class="footer-copy" data-i18n="footer.copyright">© 2026 Bardo. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <script src="translations.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="script.js"></script>
 </body>

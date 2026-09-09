@@ -4,6 +4,48 @@
 // ========================================
 
 document.addEventListener('DOMContentLoaded', () => {
+    // ==========================
+    // Language switching (EN/FR/AR)
+    // ==========================
+    const STORAGE_KEY = 'bardo_lang';
+
+    function getTranslation(lang, key) {
+        return key.split('.').reduce((obj, part) => (obj ? obj[part] : undefined), I18N[lang]);
+    }
+
+    function applyLang(lang) {
+        if (!I18N[lang]) return;
+
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        localStorage.setItem(STORAGE_KEY, lang);
+
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const value = getTranslation(lang, el.dataset.i18n);
+            if (value == null) return;
+            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                el.placeholder = value;
+            } else {
+                el.textContent = value;
+            }
+        });
+
+        if (getTranslation(lang, 'title')) {
+            document.title = getTranslation(lang, 'title');
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+    }
+
+    const savedLang = localStorage.getItem(STORAGE_KEY) || 'en';
+    applyLang(savedLang);
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+    });
+
     // Custom Cursor
     const cursor = document.getElementById('cursor');
     const cursorFollower = document.getElementById('cursorFollower');
@@ -109,7 +151,6 @@ const EMAILJS_AUTOREPLY_TEMPLATE_ID = 'template_vh3sc8d';
 // Contact form - sends notification + auto-reply via EmailJS
 const contactForm = document.getElementById('contactForm');
 const formBtn = contactForm.querySelector('button[type="submit"]');
-const originalBtnText = formBtn.textContent;
 
 emailjs.init(EMAILJS_PUBLIC_KEY);
 
@@ -136,23 +177,23 @@ contactForm.addEventListener('submit', async (e) => {
         subject: 'New message from Bardo website'
     };
 
-    formBtn.textContent = 'Sending...';
+    formBtn.textContent = getTranslation(document.documentElement.lang, 'contact.sending');
     formBtn.disabled = true;
 
     try {
         await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_NOTIF_TEMPLATE_ID, params);
         await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_AUTOREPLY_TEMPLATE_ID, params);
 
-        formBtn.textContent = 'Message Sent!';
+        formBtn.textContent = getTranslation(document.documentElement.lang, 'contact.sent');
         formBtn.style.background = '#2d5016';
         contactForm.reset();
     } catch (err) {
-        formBtn.textContent = 'Failed - Try Again';
+        formBtn.textContent = getTranslation(document.documentElement.lang, 'contact.failed');
         formBtn.style.background = '#8a1a2b';
     }
 
     setTimeout(() => {
-        formBtn.textContent = originalBtnText;
+        formBtn.textContent = getTranslation(document.documentElement.lang, 'contact.send');
         formBtn.style.background = '';
         formBtn.disabled = false;
     }, 4000);

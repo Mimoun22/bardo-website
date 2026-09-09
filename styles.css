@@ -373,12 +373,16 @@ img {
 }
 
 .hero-title {
+    display: inline-block;
+    padding: 0.3em 0.5em;
+    color: var(--black);
+    backdrop-filter: invert(1) brightness(0.95);
+    -webkit-backdrop-filter: invert(1) brightness(0.95);
     font-family: var(--font-heading);
     font-size: clamp(1.8rem, 5vw, 3.5rem);
     font-weight: 700;
     line-height: 1.15;
     margin-bottom: 1.5rem;
-    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
     opacity: 0;
     transform: translateY(30px);
     animation: fadeInUp 0.8s 0.5s forwards;

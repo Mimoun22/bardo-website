@@ -12,8 +12,8 @@ const I18N = {
         },
         hero: {
             tagline: 'Bardo Production — Tunisia',
-            title: 'We make your videos, take your photos & design your brand',
-            subtitle: 'Simple, fast and professional',
+            title: 'All in one solution for busy owners',
+            subtitle: 'You are a few steps from success',
             cta_whatsapp: 'WhatsApp us',
             cta_team: 'See our team',
             scroll: 'Scroll'
@@ -104,8 +104,8 @@ const I18N = {
         },
         hero: {
             tagline: 'Bardo Production — Tunisie',
-            title: 'Nous realisons vos videos, vos photos et votre design',
-            subtitle: 'Simple, rapide et professionnel',
+            title: 'La solution tout-en-un pour les proprietaires occupes',
+            subtitle: 'Vous etes a quelques pas du succes',
             cta_whatsapp: 'Ecrivez-nous sur WhatsApp',
             cta_team: 'Voir notre equipe',
             scroll: 'Defiler'
@@ -196,8 +196,8 @@ const I18N = {
         },
         hero: {
             tagline: 'باردو للإنتاج — تونس',
-            title: 'نصنع لك الفيديوهات والصور والتصميم',
-            subtitle: 'ببساطة وبسرعة واحترافية',
+            title: 'كل الحلول في مكان واحد لأصحاب المشاريع',
+            subtitle: 'أنت على بعد خطوات من النجاح',
             cta_whatsapp: 'راسلنا على واتساب',
             cta_team: 'شاهد فريقنا',
             scroll: 'مرر للأسفل'

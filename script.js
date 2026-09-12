@@ -185,11 +185,11 @@ contactForm.addEventListener('submit', async (e) => {
         await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_AUTOREPLY_TEMPLATE_ID, params);
 
         formBtn.textContent = getTranslation(document.documentElement.lang, 'contact.sent');
-        formBtn.style.background = '#2d5016';
+        formBtn.style.background = '#f5f5dc';
         contactForm.reset();
     } catch (err) {
         formBtn.textContent = getTranslation(document.documentElement.lang, 'contact.failed');
-        formBtn.style.background = '#8a1a2b';
+        formBtn.style.background = '#a31f34';
     }
 
     setTimeout(() => {

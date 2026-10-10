@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-fr="BARDO — Nous créons des vidéos virales" data-ar="باردو — نصنع فيديوهات فيروسية">BARDO — We Create Viral Videos</title>
+<meta name="description" content="Bardo is a production agency creating viral videos and social media content for brands and businesses." data-content-fr="Bardo est une agence de production qui crée des vidéos virales et du contenu réseaux sociaux pour les marques et les entreprises." data-content-ar="باردو وكالة إنتاج تصنع فيديوهات فيروسية ومحتوى لمواقع التواصل الاجتماعي للعلامات التجارية والشركات.">
+<link rel="icon" href="assets/img/navicon.ico" sizes="any" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;500;600;700&family=Great+Vibes&family=Aref+Ruqaa:wght@700&family=Cairo:wght@300;400;600;700&family=Reem+Kufi:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss">
+  @font-face {
+    font-family: 'Vanguard CF';
+    src: url('assets/fonts/vanguardcf-bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'El Maidan';
+    src: url('assets/fonts/el-maidan-magdysoliman-bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @theme {
+    --color-maroon: #8A1C2A;
+    --color-maroon-deep: #5E1120;
+    --color-neon: #FF2E63;
+    --color-cream: #F9F6F0;
+    --color-ink: #111111;
+
+    --font-display: 'Vanguard CF', 'Oswald', Impact, sans-serif;
+    --font-body: 'Oswald', 'Arial Narrow', Arial, sans-serif;
+    --font-script: 'Great Vibes', cursive;
+  }
+
+  @layer base {
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--color-ink);
+      color: var(--color-cream);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    ::selection { background: var(--color-neon); color: var(--color-cream); }
+  }
+
+  @layer components {
+    .display {
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      line-height: 0.86;
+      letter-spacing: -0.01em;
+    }
+
+    iframe {
+      border: 0;
+      outline: none;
+      display: block;
+    }
+
+    /* Glowing white outline around the work video */
+    .video-frame {
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.9),
+        0 0 0.5rem rgba(255, 255, 255, 0.55),
+        0 0 1.5rem rgba(255, 255, 255, 0.35),
+        0 0 3rem rgba(255, 255, 255, 0.18);
+    }
+
+    .sec-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 0;
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 34s linear infinite;
+    }
+    .marquee-track > span { padding-inline-end: 2.5rem; }
+
+    /* Bevel extrusion for the SERVICES title */
+    .bevel {
+      text-shadow:
+        0.012em 0.012em 0 rgba(0, 0, 0, 0.55),
+        0.024em 0.024em 0 rgba(0, 0, 0, 0.4),
+        0.040em 0.040em 0 rgba(0, 0, 0, 0.28),
+        0.060em 0.060em 0 rgba(0, 0, 0, 0.18),
+        0.085em 0.085em 0 rgba(0, 0, 0, 0.1);
+    }
+    .bevel-faint {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.12));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: none;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Silver 3D icons */
+    .icon-silver {
+      filter: drop-shadow(0 0.5rem 0.75rem rgba(0, 0, 0, 0.55))
+              drop-shadow(0 0 0.06rem rgba(255, 255, 255, 0.35));
+    }
+
+    /* Greyscale column render tinted to plum */
+    .column-tint {
+      filter: brightness(0.92) contrast(1.05) saturate(1.1);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(2.25rem);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* The track only fades; every bit of movement comes from the pillars
+       themselves, so all you see is the row sliding up. */
+    .svc-track.reveal { transform: none; }
+
+    @media (min-width: 768px) {
+      .col-li { transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1); }
+      /* Ripple outward from the centre pillar: 3, then 2 and 4, then 1 and 5. */
+      .reveal.in .col-li:nth-child(3) { transition-delay: 0.05s; }
+      .reveal.in .col-li:nth-child(2),
+      .reveal.in .col-li:nth-child(4) { transition-delay: 0.20s; }
+      .reveal.in .col-li:nth-child(1),
+      .reveal.in .col-li:nth-child(5) { transition-delay: 0.35s; }
+    }
+
+    .col-li .icon-item { transition: transform 0.45s cubic-bezier(0.16,1,0.3,1); }
+
+    /* ---- Services carousel ---- */
+    /* Desktop: a static row of five pillars. No track movement, no 3D, the
+       tooltip is the only interactive layer. */
+    /* Explicit stacking context so the SERVICES title can be lifted above the
+       3D track, whose transformed children otherwise escape z-index ordering. */
+    .svc-viewport {
+      position: relative;
+      z-index: 1;
+      isolation: isolate;
+    }
+    .svc-heading {
+      position: relative;
+      z-index: 30;
+    }
+
+    /* Desktop source order: pillars, panel (hidden), then the SERVICES title.
+       Declared here rather than as order-N utilities because @layer components
+       precedes the utilities layer in Tailwind v4, so a utility on the element
+       would win over a media-query override in this layer. */
+    .svc-viewport { order: 1; }
+    .svc-static-tip { order: 2; }
+    .svc-heading { order: 3; }
+
+    /* Section padding/clipping live here, not as utilities on the element, so
+       the phone overrides below are not beaten by the utilities layer. */
+    .svc-section {
+      justify-content: flex-end;
+      overflow: hidden;
+      padding-top: 7rem;
+    }
+    /* Negative, so the big word rides up under the pillar feet instead of
+       sitting in a gap below them. Phones override this further down. */
+    .svc-heading { margin-top: -16rem; }
+    .svc-section > div { padding-bottom: 2.5rem; }
+    @media (min-width: 1024px) {
+      .svc-section { padding-top: 9rem; }
+    }
+    .svc-track {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 0.75rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .col-li {
+      flex: 0 0 auto;
+      --in: 120;
+      --sc: 1;
+      /* Flat 2D: no rotateY, no translateZ. The row pans horizontally only. */
+      transform:
+        translateY(calc(var(--in) * 1%))
+        scale(var(--sc));
+      transform-origin: 50% 100%;
+    }
+    .reveal.in .col-li { --in: 0; }
+    .col-li .pillar-wrap,
+    .col-li .icon-item { pointer-events: none; }
+
+    /* Phones only: one pillar in focus, track pans, arrows appear. */
+    @media (max-width: 767px) {
+      /* SERVICES title at the very top, then the pillars, then the panel lifted
+         up in front of the pillar foot.
+
+         --svc-tip-lift is the single knob for how far the panel rides up. It
+         travels by transform, which is out of flow, so the box it leaves behind
+         is collapsed by the matching margin-bottom. That keeps the section as
+         tall as the content actually is, which is what stops img.sec-bg from
+         filling an empty band where the panel used to sit. */
+      .svc-section {
+        --svc-tip-lift: 16rem;
+      }
+      .svc-heading { order: 1; margin: 0 0 1.5rem; }
+      .svc-viewport { order: 2; }
+      .svc-static-tip { order: 3; }
+      .svc-viewport {
+        padding-block: 0 0.5rem;
+      }
+      .svc-track {
+        gap: clamp(-26rem, -58vw, -8rem);
+        transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: transform;
+      }
+      /* Room for the enlarged pillar, icon and title. */
+      .col-li {
+        width: clamp(20rem, 84vw, 32rem);
+        backface-visibility: hidden;
+      }
+      /* Pillars ~5x: the column render is now as wide as the icon. These need
+         !important because they override Tailwind width utilities, which sit in
+         a later cascade layer than this block. */
+      .col-li .pillar-wrap {
+        width: clamp(6rem, 40vw, 11rem) !important;
+      }
+      /* Service names live in the tooltip only on phones, so each pillar shows
+         just the icon over the column. */
+      .col-li .svc-name { display: none; }
+      .col-li .icon-item {
+        width: clamp(14rem, 62vw, 24rem) !important;
+        /* Offset down the column. Margin, not transform: the float animation
+           owns transform and would overwrite a translate. */
+        margin-top: 1.25rem;
+        /* Sway with a real tilt instead of the flat float. Set as the longhand
+           on purpose — the animation shorthand would reset animation-delay and
+           drop the -0.5s..-2s floaty--del stagger. */
+        animation-name: icon-sway;
+      }
+      /* Every pillar renders at the same size: --sc matches the active pillar's
+         1.18 for all of them, and the row is flat 2D so nothing recedes. The
+         active state is still legible through brightness, opacity and z-index. */
+      .col-li[data-active="true"] {
+        --sc: 1.18;
+        filter: brightness(1) drop-shadow(0 1.5rem 2.5rem rgba(0, 0, 0, 0.6));
+        z-index: 20;
+      }
+      .col-li[data-active="false"] {
+        --sc: 1.18;
+        filter: brightness(0.5);
+        opacity: 0.85;
+        cursor: pointer;
+      }
+      /* Cursor tooltip is desktop-only; phones use the static panel. */
+      .svc-arrow { display: flex; }
+    }
+
+    /* The pillars are ~5x on phones, so the track bleeds far outside the section
+       box on both axes. clip on both axes kills the horizontal scrollbar and
+       stops the column running on over the section below it — and unlike hidden,
+       clip never turns the section into a vertical scroll container. */
+    @media (max-width: 767px) {
+      /* No min-height and no margin-top: auto here. The section is sized by its
+         content (heading, pillars, panel), so img.sec-bg — inset: 0, height:
+         100% — can only ever be as tall as what is actually on screen. The
+         previous min-height: 118svh plus margin-top: auto reserved space the
+         content never filled, and the background showed through it. */
+      .svc-section {
+        overflow-x: clip;
+        overflow-y: clip;
+        padding-top: 5.5rem;
+        /* Air under the panel. It has to be margin, not padding: the track
+           floor sits 148px below the panel (the lift is 16rem, the panel box
+           is 108px), so padding inside the box would just be filled with more
+           column. Margin lives outside the clip, so the column still stops
+           exactly on the panel's bottom edge and the gap below stays empty. */
+        margin-bottom: 2rem;
+      }
+      /* Arrows ride the bottom of the track instead of its vertical middle, so
+         they stay next to the pillar base and the panel rather than floating at
+         the centre of a very tall viewport. */
+      .svc-arrow {
+        top: auto;
+        bottom: var(--svc-arrow-offset, 1rem);
+        transform: none;
+      }
+      .svc-arrow:hover { transform: scale(1.08); }
+      .svc-arrow:active { transform: scale(0.96); }
+      /* No bottom padding: the panel's collapsed box already ends the section
+         flush against its last visible pixel, and padding here would re-open the
+         empty band that padding exists to avoid. */
+      .svc-section > div { padding-bottom: 0; }
+    }
+
+    .svc-arrow {
+      display: none;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 30;
+      align-items: center;
+      justify-content: center;
+      width: clamp(2.5rem, 4vw, 3.5rem);
+      height: clamp(2.5rem, 4vw, 3.5rem);
+      border-radius: 9999px;
+      border: 1px solid rgba(249, 246, 240, 0.25);
+      background: rgba(17, 17, 17, 0.55);
+      backdrop-filter: blur(6px);
+      color: var(--color-cream);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  background-color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+    }
+    .svc-arrow:hover { background: rgba(138, 28, 42, 0.75); border-color: var(--color-neon); transform: translateY(-50%) scale(1.08); }
+    .svc-arrow:active { transform: translateY(-50%) scale(0.96); }
+    .svc-arrow:focus-visible { outline: 2px solid var(--color-neon); outline-offset: 3px; }
+    .svc-prev { left: 0; }
+    .svc-next { right: 0; }
+
+    /* Arrows belong to the phone carousel only; declared after the base rule
+       so the override wins. */
+    @media (max-width: 767px) {
+      .svc-arrow { display: flex; }
+    }
+
+    /* ---- Cursor tooltip ---- */
+    .svc-tip {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 90;
+      max-width: min(18rem, calc(100vw - 2rem));
+      padding: 0.7rem 0.9rem;
+      border: 1px solid rgba(249, 246, 240, 0.18);
+      border-radius: 0.5rem;
+      background: rgba(17, 17, 17, 0.88);
+      backdrop-filter: blur(8px);
+      color: var(--color-cream);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.14s ease;
+      will-change: transform;
+    }
+    .svc-tip.on { opacity: 1; }
+    .svc-tip-title {
+      display: block;
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 0.95rem;
+      color: var(--color-neon);
+      margin-bottom: 0.3rem;
+    }
+    .svc-tip-text {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 300;
+      line-height: 1.4;
+      color: rgba(249, 246, 240, 0.8);
+    }
+    .svc-tip-nudge { display: block; margin-top: 0.35rem; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(249, 246, 240, 0.4); }
+
+    /* Phones: a permanent panel under the track naming the focused service.
+       Hidden on desktop, where the cursor tooltip is used instead. */
+    .svc-static-tip {
+      display: none;
+      position: relative;
+      z-index: 20;
+      margin: 1.25rem auto 0;
+      max-width: 26rem;
+      padding: 0.85rem 1.1rem;
+      border: 1px solid rgba(249, 246, 240, 0.18);
+      border-radius: 0.6rem;
+      background: rgba(17, 17, 17, 0.82);
+      backdrop-filter: blur(8px);
+      text-align: center;
+      transition: opacity 0.3s ease;
+    }
+    @media (max-width: 767px) {
+      .svc-static-tip { display: block; }
+      .svc-static-tip .svc-tip-title { font-size: 1.35rem; margin-bottom: 0.4rem; }
+      .svc-static-tip .svc-tip-text { font-size: 0.9rem; }
+      /* Declared after the base rule above on purpose: that rule sets
+         `margin: 1.25rem auto 0`, so a phone override placed earlier in this
+         sheet would lose to it and the collapse below would silently not apply.
+
+         The panel rides up over the pillar foot via transform, which is out of
+         flow and leaves its box behind. Collapsing that box by the same distance
+         --svc-tip-lift keeps the section exactly as tall as the visible content,
+         so img.sec-bg (inset: 0, height: 100%) has no empty band to fill. */
+      .svc-static-tip {
+        margin: 0 0 calc(-1 * var(--svc-tip-lift));
+        transform: translateY(calc(-1 * var(--svc-tip-lift)));
+      }
+    }
+
+    /* ---- Deep Look ---- */
+    .deep-grad {
+      background:
+        radial-gradient(120% 95% at 50% 42%, rgba(138, 28, 42, 0.62) 0%, rgba(94, 17, 32, 0.4) 42%, rgba(17, 17, 17, 0) 74%),
+        linear-gradient(180deg, #2C0509 0%, #170406 58%, var(--color-ink) 100%);
+    }
+    .deep-grid {
+      background-image: url('assets/bg/grid.png');
+      background-size: 4rem 4rem;
+      background-repeat: repeat;
+      opacity: 0.3;
+    }
+    .deep-we {
+      font-family: 'Anton', var(--font-body);
+      font-weight: 400;
+      font-size: clamp(4.5rem, min(58vw, 100vh), 80rem);
+      line-height: 0.82;
+      letter-spacing: 0.55em;
+      margin-right: -0.55em;
+      color: var(--color-maroon);
+    }
+    .deep-script {
+      font-family: var(--font-script);
+      color: var(--color-cream);
+      text-shadow: 0 0.035em 0.2em rgba(0, 0, 0, 0.72), 0 0.012em 0.05em rgba(0, 0, 0, 0.55);
+    }
+    .hex-spin {
+      transform-origin: 50% 50%;
+      animation: hexspin 12s linear infinite;
+    }
+    .hex-spin--alt {
+      transform-origin: 50% 50%;
+      animation: hexspin-alt 14s linear infinite reverse;
+    }
+    /* Deep Look v3 */
+    .deep-we {
+      font-family: 'Anton', var(--font-body);
+      font-weight: 400;
+      font-size: clamp(12rem, 32vw, 48rem);
+      line-height: 0.82;
+      letter-spacing: 0.02em;
+      color: #8A1C2A;
+      text-align: center;
+    }
+    .deep-script-v3 {
+      font-family: var(--font-script);
+      color: #F9F6F0;
+      text-shadow: 0 0.05em 0.25em rgba(0,0,0,0.75);
+    }
+    .hex-spin {
+      transform-origin: 50% 50%;
+      animation: hexspin 12s linear infinite;
+    }
+    .hex-spin--alt {
+      transform-origin: 50% 50%;
+      animation: hexspin-alt 14s linear infinite reverse;
+    }
+
+    .floaty { animation: float 4.5s ease-in-out infinite; }
+    .floaty--del1 { animation-delay: -0.5s; }
+    .floaty--del2 { animation-delay: -1s; }
+    .floaty--del3 { animation-delay: -1.5s; }
+    .floaty--del4 { animation-delay: -2s; }
+
+    /* Full-bleed art behind the phone mockup. The box lives here rather than
+       as utilities on the element, so the phone turn below is not beaten by
+       the utilities layer. */
+    .work-art {
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    @media (max-width: 767px) {
+      /* Turned 90deg, the box has to lie across the section: its width feeds
+         the section's height and its height feeds the section's width, so the
+         artwork fills the page instead of arriving as a square.
+         max-width: none, because preflight clamps every img to 100% of its
+         container and that is what squashed it to 390px. */
+      .work-art {
+        inset: auto;
+        left: 50%;
+        top: 50%;
+        width: 100vh;
+        height: 100vw;
+        max-width: none;
+        transform: translate(-50%, -50%) rotate(90deg);
+      }
+    }
+
+    /* The logo is a 1080² canvas with the mark at alpha bbox 254,98–833,985
+       (579×887 inside), so negative margins trim the transparent padding: at
+       48.7px tall the visible mark measures 40px, matching the 40px hamburger
+       beside it. Knob: the height — everything else follows from the bbox. */
+    .nav-logo {
+      height: 3.044rem;
+      width: auto;
+      max-width: none;
+      margin: -0.272rem -0.7rem;
+      user-select: none;
+    }
+
+    /* ---------- Language switch (header, mobile menu, footer) ---------- */
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.1rem;
+      padding: 0.25rem 0.4rem;
+      border: 1px solid rgb(249 246 240 / 0.25);
+      border-radius: 999px;
+    }
+    .lang-btn {
+      padding: 0.1rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      line-height: 1.5;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgb(249 246 240 / 0.55);
+      transition: color 0.2s ease, background-color 0.2s ease;
+    }
+    .lang-btn:hover { color: var(--color-cream); }
+    .lang-btn[aria-current="true"] {
+      color: var(--color-neon);
+      background: rgb(255 46 99 / 0.14);
+    }
+    .lang-btn:focus-visible {
+      outline: 2px solid var(--color-neon);
+      outline-offset: 2px;
+    }
+
+    /* Hero CTA. margin-top and position live here rather than as utilities so
+       the phone block below can override them inside the same layer — the
+       utilities layer would beat a component rule for the same property. */
+    .hero-cta {
+      position: relative;
+      margin-top: 3rem;
+    }
+
+    /* DEEP / LOOK and the mockup are boxes, not utilities: the phone layout
+       runs all three at twice the desktop size, which no shared clamp can
+       express. Widths are the only thing moving — position utilities stay on
+       the elements. */
+    .deep-art { left: -15%; top: -8%; width: 93%; }
+    .look-art { right: -15%; bottom: -7%; width: 96%; }
+    .video-shell { width: clamp(11.2rem, min(36.8vw, 43.2vh), 24rem); }
+    @media (min-width: 1024px) {
+      .deep-art { width: 78%; }
+      .look-art { width: 81%; }
+    }
+    @media (max-width: 767px) {
+      /* Contact Us pinned to the foot of the hero. The copy box takes the
+         section's full height — it is a cross-axis item in the hero's row flex,
+         so align-self stretches it vertically — giving the button a floor to
+         hang off. justify-content keeps the headline centred in what is left. */
+      .hero-copy {
+        align-self: stretch;
+        justify-content: center;
+      }
+      .hero-cta {
+        position: absolute;
+        left: 50%;
+        bottom: 4.5rem;
+        margin-top: 0;
+        transform: translateX(-50%);
+      }
+
+      /* Both words and the mockup double up. Centred with left: 50% +
+         translateX(-50%) instead of the desktop edge offsets, because right:
+         -15% stops meaning anything once the box is wider than the section. */
+      .deep-art { left: 50%; transform: translateX(-50%); width: 186%; }
+      .look-art { left: 50%; right: auto; transform: translateX(-50%); width: 192%; }
+      .video-shell { width: clamp(22.4rem, min(73.6vw, 86.4vh), 48rem); }
+    }
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* perspective() sits first in each transform list so the rotation and the
+     axis tilt are both projected through the same vanishing point. Without it
+     the rotateX/rotateY would flatten to nothing, because a lone 2D rotation
+     on an img has no 3D context to tilt against. */
+  @keyframes hexspin {
+    from { transform: perspective(1600px) rotateX(16deg) rotateY(-12deg) rotate(0deg); }
+    to { transform: perspective(1600px) rotateX(16deg) rotateY(-12deg) rotate(360deg); }
+  }
+  @keyframes hexspin-alt {
+    from { transform: perspective(1600px) rotateX(-14deg) rotateY(18deg) rotate(0deg); }
+    to { transform: perspective(1600px) rotateX(-14deg) rotateY(18deg) rotate(360deg); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(-0.5deg); }
+    50% { transform: translateY(-0.9rem) rotate(0.5deg); }
+  }
+
+  /* Phone-only replacement for float: the same lift, but leaning instead of
+     drifting flat, so the icon reads as pinned to a tilting column. */
+  @keyframes icon-sway {
+    0%, 100% { transform: translateY(0.35rem) rotate(-2.5deg); }
+    50% { transform: translateY(-0.55rem) rotate(2.5deg); }
+  }
+
+  /* ---------- Arabic typography ----------
+     Deliberately unlayered: a rule outside every @layer beats anything inside
+     @layer base/components/utilities regardless of specificity, so Arabic can
+     swap fonts and neutralise Tailwind's tracking/leading utilities with no
+     !important and no utility edits. The page keeps dir=ltr — only type moves. */
+  html[lang="ar"] body {
+    font-family: 'Cairo', var(--font-body);
+  }
+  html[lang="ar"] .display {
+    /* El Maidan carries the Arabic; Reem Kufi and the Latin faces behind it
+       cover whatever Latin shares the line (brand name, numbers, EN/FR/AR). */
+    font-family: 'El Maidan', 'Reem Kufi', var(--font-display);
+    letter-spacing: normal;
+    line-height: 1.12;
+  }
+  /* tracking-[0.22em] / [0.15em] / [0.2em] would pull Arabic letterforms apart. */
+  html[lang="ar"] [class*="tracking-"] {
+    letter-spacing: normal;
+  }
+  html[lang="ar"] .font-script {
+    font-family: 'Aref Ruqaa', var(--font-script);
+    line-height: 1.15;
+  }
+</style>
+</head>
+<body>
+
+<header id="nav" class="fixed inset-x-0 top-0 z-50 transition-colors duration-300">
+  <div class="mx-auto flex max-w-[110rem] items-center justify-between px-6 py-5 lg:px-10">
+    <a href="#hero" class="block">
+      <img src="assets/img/New%20Project(2).png" alt="Bardo" data-alt-ar="باردو" class="nav-logo block" width="1080" height="1080">
+    </a>
+    <nav class="hidden items-center gap-10 md:flex">
+      <a href="#work" class="text-xs font-semibold uppercase tracking-[0.22em] text-cream/85 transition-colors hover:text-neon" data-fr="Nos réalisations" data-ar="أعمالنا">Our Work</a>
+      <a href="#services" class="text-xs font-semibold uppercase tracking-[0.22em] text-cream/85 transition-colors hover:text-neon" data-ar="الخدمات">Services</a>
+      <a href="#contact" class="text-xs font-semibold uppercase tracking-[0.22em] text-cream/85 transition-colors hover:text-neon" data-fr="Contact" data-ar="اتصل بنا">Contact</a>
+    </nav>
+    <div class="flex items-center gap-3 md:gap-5">
+      <div class="lang-switch" role="group" aria-label="Language" data-aria-fr="Langue" data-aria-ar="اللغة">
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+        <button type="button" class="lang-btn" data-lang="fr">FR</button>
+        <button type="button" class="lang-btn" data-lang="ar">AR</button>
+      </div>
+      <button id="menuToggle" class="flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden" aria-label="Menu" data-aria-fr="Menu" data-aria-ar="القائمة" aria-expanded="false">
+        <span class="block h-0.5 w-6 bg-cream transition-transform duration-300"></span>
+        <span class="block h-0.5 w-6 bg-cream transition-transform duration-300"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="mobileMenu" class="fixed inset-0 z-40 hidden flex-col justify-center gap-8 bg-ink/97 px-10 md:hidden">
+  <a href="#work" class="mobile-link display text-5xl text-cream" data-fr="Nos réalisations" data-ar="أعمالنا">Our Work</a>
+  <a href="#services" class="mobile-link display text-5xl text-cream" data-ar="الخدمات">Services</a>
+  <a href="#contact" class="mobile-link display text-5xl text-cream" data-fr="Contact" data-ar="اتصل بنا">Contact</a>
+  <div class="lang-switch mt-2 self-start" role="group" aria-label="Language" data-aria-fr="Langue" data-aria-ar="اللغة">
+    <button type="button" class="lang-btn" data-lang="en">EN</button>
+    <button type="button" class="lang-btn" data-lang="fr">FR</button>
+    <button type="button" class="lang-btn" data-lang="ar">AR</button>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<section id="hero" class="relative flex min-h-screen items-center justify-center overflow-hidden">
+  <img src="assets/bg/hero.webp" alt="" class="sec-bg" aria-hidden="true">
+  <div class="hero-copy relative z-10 mx-auto flex w-full max-w-[110rem] flex-col items-center px-6 pb-24 pt-32 text-center lg:px-10">
+    <h1 class="display text-[clamp(2.75rem,8.5vw,9rem)] leading-[0.82]">
+      <span class="block text-cream" data-fr="Nous créons des vidéos virales" data-ar="نصنع فيديوهات فيروسية">We Create Viral Videos</span>
+      <span class="block text-neon" data-fr="pour les marques et les entreprises" data-ar="للعلامات التجارية والشركات">For Brand &amp; Businesses</span>
+    </h1>
+    <a href="#contact" class="hero-cta group inline-flex items-center gap-4 px-2 py-2">
+      <img src="assets/img/cta-pill.webp" alt="" class="h-auto w-[clamp(13rem,20vw,17rem)]" aria-hidden="true">
+        <span class="absolute inset-0 flex items-center justify-center gap-3 pr-[clamp(1.5rem,6vw,3rem)] text-[clamp(0.98rem,1.54vw,1.33rem)] font-semibold uppercase tracking-[0.2em] text-cream transition-colors group-hover:text-neon" data-fr="Contactez-nous" data-ar="اتصل بنا">
+        Contact Us
+      </span>
+    </a>
+  </div>
+  <div class="absolute inset-x-0 bottom-0 z-10 overflow-hidden border-y border-ink/40 bg-maroon-deep py-3">
+    <div class="marquee-track">
+      <span class="display text-lg text-cream/90 lg:text-[2.5rem]" data-fr="Montage vidéo &middot; Design graphique &middot; Idéation &middot; Vidéographie &middot; Gestion des réseaux sociaux &middot; Marketing &middot; Rédaction de scénarios &middot; Rédaction publicitaire" data-ar="مونتاج فيديو &middot; تصميم جرافيك &middot; توليد الأفكار &middot; تصوير فيديو &middot; إدارة وسائل التواصل &middot; التسويق &middot; كتابة السيناريو &middot; كتابة النصوص الإعلانية">Video Editing &middot; Graphic Design &middot; Ideation &middot; Videography &middot; Social Media Management &middot; Marketing &middot; Script Writing &middot; Copywriting</span>
+      <span class="display text-lg text-cream/90 lg:text-[2.5rem]" aria-hidden="true" data-fr="Montage vidéo &middot; Design graphique &middot; Idéation &middot; Vidéographie &middot; Gestion des réseaux sociaux &middot; Marketing &middot; Rédaction de scénarios &middot; Rédaction publicitaire" data-ar="مونتاج فيديو &middot; تصميم جرافيك &middot; توليد الأفكار &middot; تصوير فيديو &middot; إدارة وسائل التواصل &middot; التسويق &middot; كتابة السيناريو &middot; كتابة النصوص الإعلانية">Video Editing &middot; Graphic Design &middot; Ideation &middot; Videography &middot; Social Media Management &middot; Marketing &middot; Script Writing &middot; Copywriting</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OUR WORK ============ -->
+<section id="work" class="relative flex min-h-screen items-center justify-center overflow-hidden">
+  <!-- Z-0 · background layer -->
+  <img src="assets/bg/work.webp" alt="" class="absolute inset-0 z-0 h-full w-full object-cover" aria-hidden="true">
+  <div class="absolute inset-0 z-0 bg-black/45" aria-hidden="true"></div>
+  <img src="assets/img/take.png" alt="" class="pointer-events-none absolute z-[1] select-none work-art" aria-hidden="true">
+
+  <!-- Z-2 · animated hexagonal wireframes (behind text and video) -->
+  <img src="assets/img/hex.webp" alt="" class="hex-spin pointer-events-none absolute right-[-12%] top-[-32%] z-[2] h-[clamp(33rem,78vw,66rem)] w-[clamp(33rem,78vw,66rem)] opacity-60 select-none drop-shadow-[0_0_60px_rgba(255,255,255,0.2)]" aria-hidden="true">
+  <img src="assets/img/hex.webp" alt="" class="hex-spin--alt pointer-events-none absolute bottom-[-32%] left-[-14%] z-[2] h-[clamp(33rem,78vw,66rem)] w-[clamp(33rem,78vw,66rem)] opacity-60 select-none drop-shadow-[0_0_60px_rgba(255,255,255,0.2)]" aria-hidden="true">
+
+  <!-- Z-20 · DEEP / LOOK PNG typography -->
+  <img src="assets/img/deep.png" alt="Deep" class="deep-art pointer-events-none absolute z-20 h-auto max-w-none select-none" aria-hidden="true">
+  <img src="assets/img/look.png" alt="Look" class="look-art pointer-events-none absolute z-20 h-auto max-w-none select-none" aria-hidden="true">
+
+  <!-- Z-10 · phone mockup with Vimeo -->
+  <div class="video-shell relative z-10 bg-transparent p-0 ring-0 outline-none">
+    <div class="video-frame relative w-full overflow-hidden bg-black ring-0 outline-none" style="padding:177.78% 0 0 0;">
+      <iframe src="https://player.vimeo.com/video/1233084722?background=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;loop=1" frameborder="0" allow="fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" class="absolute inset-0 h-full w-full border-0" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="first render sketch gramos"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services" class="svc-section relative flex flex-col">
+  <img src="assets/bg/services.webp" alt="" class="sec-bg" aria-hidden="true">
+  <div class="relative z-10 mx-auto flex w-full max-w-[110rem] flex-col px-6 lg:px-10">
+    <h2 class="svc-heading display bevel text-center text-[clamp(2.75rem,13vw,13rem)] text-cream" data-ar="خدماتنا">
+      SER<span class="bevel-faint">V</span>ICES
+    </h2>
+    <div class="svc-static-tip" role="status" aria-live="polite">
+      <span class="svc-tip-title"></span>
+      <span class="svc-tip-text"></span>
+    </div>
+    <div class="svc-viewport">
+    <button type="button" class="svc-arrow svc-prev" aria-label="Previous service" data-aria-fr="Service précédent" data-aria-ar="الخدمة السابقة">
+      <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button type="button" class="svc-arrow svc-next" aria-label="Next service" data-aria-fr="Service suivant" data-aria-ar="الخدمة التالية">
+      <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+    <ol class="svc-track reveal">
+      <li class="col-li relative flex flex-col items-center will-change-transform" data-active="true" data-tip-title="Ideation" data-tip-text="Concept angles, hooks and visual directions that give the video a reason to be watched." data-tip-title-fr="Idéation" data-tip-title-ar="توليد الأفكار" data-tip-text-fr="Angles de concept, accroches et directions visuelles qui donnent à la vidéo une raison d'être regardée." data-tip-text-ar="مفاهيم وغرز بصرية تمنح الفيديو سبباً كي يُشاهَد.">
+        <span class="svc-name display relative z-30 mb-5 text-xs text-neon drop-shadow-[0_6px_40px_rgba(255,46,99,0.35)] sm:text-base lg:text-[2.5rem]" data-fr="Idéation" data-ar="توليد الأفكار">Ideation</span>
+        <img src="assets/img/blub.png" alt="" width="336" height="336" class="icon-item icon-silver relative z-10 -mb-3 h-auto w-[clamp(10rem,16vw,16rem)] floaty lg:-mb-4">
+        <div class="pillar-wrap relative z-10 -mt-2 h-auto w-[clamp(2rem,8vw,8.5rem)]">
+          <img src="assets/img/column.png" alt="" width="248" height="642" class="column-tint h-full w-full object-contain">
+        </div>
+      </li>
+      <li class="col-li relative flex flex-col items-center will-change-transform" data-active="false" data-tip-title="Scripting" data-tip-text="Scripts written to hook in the first two seconds and land the payoff." data-tip-title-fr="Scénarisation" data-tip-title-ar="السيناريو" data-tip-text-fr="Des scénarios qui accrochent dans les deux premières secondes et délivrent la chute." data-tip-text-ar="نصوص تُشدّ في أول ثانيتين وتُحقّق الوصول إلى الذروة." tabindex="-1">
+        <span class="svc-name display relative z-30 mb-5 text-xs text-neon drop-shadow-[0_6px_40px_rgba(255,46,99,0.35)] sm:text-base lg:text-[2.5rem]" data-fr="Scénarisation" data-ar="السيناريو">Scripting</span>
+        <img src="assets/img/pen.png" alt="" width="336" height="336" class="icon-item icon-silver relative z-10 -mb-3 h-auto w-[clamp(10rem,16vw,16rem)] floaty floaty--del1 lg:-mb-4">
+        <div class="pillar-wrap relative z-10 -mt-2 h-auto w-[clamp(2.4rem,10vw,10.5rem)]">
+          <img src="assets/img/column.png" alt="" width="248" height="642" class="column-tint h-full w-full object-contain">
+        </div>
+      </li>
+      <li class="col-li relative flex flex-col items-center will-change-transform" data-active="false" data-tip-title="Recording" data-tip-text="Multi-camera shoot days, studio or on location, shot for vertical and widescreen." data-tip-title-fr="Tournage" data-tip-title-ar="التصوير" data-tip-text-fr="Journées de tournage multi-caméras, en studio ou en décor, formats vertical et grand écran." data-tip-text-ar="يوميات تصوير بعدة كاميرات، في الاستوديو أو في الموقع، بالصيغة العمودية والعريضة." tabindex="-1">
+        <span class="svc-name display relative z-30 mb-5 text-xs text-neon drop-shadow-[0_6px_40px_rgba(255,46,99,0.35)] sm:text-base lg:text-[2.5rem]" data-fr="Tournage" data-ar="التصوير">Recording</span>
+        <img src="assets/img/camera.png" alt="" width="336" height="336" class="icon-item icon-silver relative z-10 -mb-3 h-auto w-[clamp(10rem,16vw,16rem)] floaty floaty--del2 lg:-mb-4">
+        <div class="pillar-wrap relative z-10 -mt-2 h-auto w-[clamp(2.8rem,11.5vw,12rem)]">
+          <img src="assets/img/column.png" alt="" width="248" height="642" class="column-tint h-full w-full object-contain">
+        </div>
+      </li>
+      <li class="col-li relative flex flex-col items-center will-change-transform" data-active="false" data-tip-title="Editing" data-tip-text="Rhythmic cuts, sound design, captions and colour so the pace holds attention." data-tip-title-fr="Montage" data-tip-title-ar="المونتاج" data-tip-text-fr="Coupes rythmées, design sonore, sous-titres et étalonnage pour que le rythme tienne l'attention." data-tip-text-ar="قصّات إيقاعية وتصميم صوتي وترجمة وألوان لتبقى الإيقاع ماسكاً بالانتباه." tabindex="-1">
+        <span class="svc-name display relative z-30 mb-5 text-xs text-neon drop-shadow-[0_6px_40px_rgba(255,46,99,0.35)] sm:text-base lg:text-[2.5rem]" data-fr="Montage" data-ar="المونتاج">Editing</span>
+        <img src="assets/img/cut.png" alt="" width="336" height="336" class="icon-item icon-silver relative z-10 -mb-3 h-auto w-[clamp(10rem,16vw,16rem)] floaty floaty--del3 lg:-mb-4">
+        <div class="pillar-wrap relative z-10 -mt-2 h-auto w-[clamp(2.4rem,10vw,10.5rem)]">
+          <img src="assets/img/column.png" alt="" width="248" height="642" class="column-tint h-full w-full object-contain">
+        </div>
+      </li>
+      <li class="col-li relative flex flex-col items-center will-change-transform" data-active="false" data-tip-title="Sharing" data-tip-text="Scheduled posts, platform-native edits and community replies after it goes live." data-tip-title-fr="Diffusion" data-tip-title-ar="النشر" data-tip-text-fr="Publications planifiées, formats natifs par plateforme et réponses à la communauté après la mise en ligne." data-tip-text-ar="منشورات مجدولة ونسخ مهيأة لكل منصة وردّ على المجتمع بعد النشر." tabindex="-1">
+        <span class="svc-name display relative z-30 mb-5 text-xs text-neon drop-shadow-[0_6px_40px_rgba(255,46,99,0.35)] sm:text-base lg:text-[2.5rem]" data-fr="Diffusion" data-ar="النشر">Sharing</span>
+        <img src="assets/img/like.png" alt="" width="336" height="336" class="icon-item icon-silver relative z-10 -mb-3 h-auto w-[clamp(10rem,16vw,16rem)] floaty floaty--del4 lg:-mb-4">
+        <div class="pillar-wrap relative z-10 -mt-2 h-auto w-[clamp(2rem,8vw,8.5rem)]">
+          <img src="assets/img/column.png" alt="" width="248" height="642" class="column-tint h-full w-full object-contain">
+        </div>
+      </li>
+    </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHECK OUT ============ -->
+<section id="platforms" class="relative flex items-center justify-center overflow-hidden py-28 lg:py-36">
+  <img src="assets/bg/checkout.webp" alt="" class="sec-bg" aria-hidden="true">
+  <div class="relative z-10 mx-auto w-full max-w-[110rem] px-6 lg:px-10">
+    <div class="reveal flex items-baseline justify-center gap-4">
+      <span class="display text-[clamp(3rem,11vw,10rem)] text-maroon" data-fr="Jetez" data-ar="شاهد أعمالنا">Check Us</span>
+      <span class="font-script text-[clamp(3.5rem,12vw,11rem)] leading-none text-maroon" data-fr="un œil" data-ar="">Out</span>
+      <svg class="hidden h-10 w-28 text-maroon/60 sm:block" viewBox="0 0 112 40" fill="none" aria-hidden="true">
+        <path d="M2 30C22 4 58 2 72 16c11 11-6 20-16 12-8-7 3-18 18-16 12 2 24 6 36 16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <ul class="reveal mt-16 grid grid-cols-2 gap-x-6 gap-y-12 sm:grid-cols-4 lg:mt-20 lg:gap-x-10">
+      <li class="flex flex-col items-center">
+        <a href="https://www.tiktok.com/@_bardo.tn" target="_blank" rel="noopener" class="group">
+          <img src="assets/img/app-tiktok.webp" alt="TikTok" width="395" height="395" class="h-auto w-[clamp(6rem,15vw,11rem)] transition-transform duration-300 hover:-translate-y-1.5">
+        </a>
+        <span class="display mt-6 text-lg text-maroon lg:text-2xl">Tiktok</span>
+      </li>
+      <li class="flex flex-col items-center">
+        <a href="https://wa.me/21695052879" target="_blank" rel="noopener" class="group">
+          <img src="assets/img/app-whatsapp.webp" alt="WhatsApp" width="395" height="395" class="h-auto w-[clamp(6rem,15vw,11rem)] transition-transform duration-300 hover:-translate-y-1.5">
+        </a>
+        <span class="display mt-6 text-lg text-maroon lg:text-2xl">Whatsapp</span>
+      </li>
+      <li class="flex flex-col items-center">
+        <a href="#" data-soon aria-haspopup="dialog" class="group">
+          <img src="assets/img/app-facebook.webp" alt="Facebook" width="395" height="401" class="h-auto w-[clamp(6rem,15vw,11rem)] transition-transform duration-300 hover:-translate-y-1.5">
+        </a>
+        <span class="display mt-6 text-lg text-maroon lg:text-2xl">Facebook</span>
+      </li>
+      <li class="flex flex-col items-center">
+        <a href="https://www.instagram.com/_bardo.tn/" target="_blank" rel="noopener" class="group">
+          <img src="assets/img/app-instagram.webp" alt="Instagram" width="395" height="395" class="h-auto w-[clamp(6rem,15vw,11rem)] transition-transform duration-300 hover:-translate-y-1.5">
+        </a>
+        <span class="display mt-6 text-lg text-maroon lg:text-2xl">Instagram</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<footer id="contact" class="relative overflow-hidden bg-ink pt-24 lg:pt-32">
+  <div class="mx-auto w-full max-w-[110rem] px-6 lg:px-10">
+    <div class="grid gap-14 border-b border-cream/15 pb-16 lg:grid-cols-[1.2fr_1fr_1fr] lg:gap-10">
+      <div>
+        <a href="#hero" class="display text-4xl text-cream lg:text-5xl" data-ar="باردو">Bardo</a>
+        <p class="mt-5 max-w-xs text-sm font-light leading-relaxed tracking-wide text-cream/60" data-fr="Nous créons des vidéos virales et gérons les réseaux sociaux des marques et des entreprises." data-ar="نصنع فيديوهات فيروسية وندير وسائل التواصل الاجتماعي للعلامات التجارية والشركات.">
+          We create viral videos and manage social media for brands and businesses.
+        </p>
+        <div class="lang-switch mt-6" role="group" aria-label="Language" data-aria-fr="Langue" data-aria-ar="اللغة">
+          <button type="button" class="lang-btn" data-lang="en">EN</button>
+          <button type="button" class="lang-btn" data-lang="fr">FR</button>
+          <button type="button" class="lang-btn" data-lang="ar">AR</button>
+        </div>
+      </div>
+      <nav class="flex flex-col items-start gap-3">
+        <span class="display mb-1 text-sm text-neon" data-ar="القائمة">Menu</span>
+        <a href="#work" class="text-sm font-light tracking-[0.15em] text-cream/70 uppercase transition-colors hover:text-neon" data-fr="Nos réalisations" data-ar="أعمالنا">Our Work</a>
+        <a href="#services" class="text-sm font-light tracking-[0.15em] text-cream/70 uppercase transition-colors hover:text-neon" data-ar="الخدمات">Services</a>
+        <a href="#platforms" class="text-sm font-light tracking-[0.15em] text-cream/70 uppercase transition-colors hover:text-neon" data-fr="Jetez un œil" data-ar="شاهد أعمالنا">Check Us Out</a>
+      </nav>
+      <div class="flex flex-col items-start gap-3">
+        <span class="display mb-1 text-sm text-neon" data-fr="Contact" data-ar="اتصل بنا">Contact</span>
+        <a href="tel:+21695052879" class="text-sm font-light tracking-[0.15em] text-cream/70 uppercase transition-colors hover:text-neon">+216 95 052 879</a>
+        <a href="mailto:bardosproduction637@gmail.com" class="text-sm font-light tracking-[0.15em] break-all text-cream/70 uppercase transition-colors hover:text-neon">Bardosproduction637@gmail.com</a>
+        <a href="https://wa.me/21695052879" target="_blank" rel="noopener" class="text-sm font-light tracking-[0.15em] text-cream/70 uppercase transition-colors hover:text-neon">WhatsApp</a>
+      </div>
+    </div>
+    <p class="display py-7 text-center text-xs text-cream/40" data-fr="© 2026 Bardo &middot; Tous droits réservés" data-ar="© 2026 باردو &middot; جميع الحقوق محفوظة">© 2026 Bardo &middot; All Rights Reserved</p>
+  </div>
+</footer>
+
+<!-- ============ "STILL NOT YET" POPUP (Facebook) ============ -->
+<div id="soon" class="fixed inset-0 z-50 hidden items-center justify-center bg-ink/85 px-6 backdrop-blur-md" role="dialog" aria-modal="true" aria-labelledby="soonTitle">
+  <div class="relative w-full max-w-sm border border-cream/15 bg-ink px-8 py-10 text-center">
+    <span aria-hidden="true" class="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-neon to-transparent"></span>
+    <p class="display text-3xl text-neon" id="soonTitle" data-fr="Facebook" data-ar="فيسبوك">Facebook</p>
+    <p class="mt-4 text-sm font-light leading-relaxed tracking-wide text-cream/70" data-fr="Pas encore." data-ar="ليس بعد.">Still not yet.</p>
+    <button type="button" id="soonClose" class="mt-8 rounded-full border border-cream/30 px-7 py-2.5 text-xs font-medium tracking-[0.3em] uppercase transition-colors hover:border-neon hover:text-neon focus-visible:outline focus-visible:outline-neon" data-fr="Fermer" data-ar="إغلاق">Close</button>
+  </div>
+</div>
+
+<script>
+  /* ---------- Language (EN / FR / AR) ----------
+     Copy sits in data-fr / data-ar next to the English it translates. The
+     original English innerHTML is stashed on first apply, so switching back is
+     byte-exact. data-aria-* / data-content-* / data-alt-* push the same stash
+     through attribute strings (aria-label, meta description, img alt). An empty translation
+     hides the element — that is how Arabic folds the two-word "Check Us Out"
+     title into a single span. */
+  const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+  const LANGS = ['en', 'fr', 'ar'];
+  let curLang = 'en';
+
+  const readLang = () => {
+    try {
+      const saved = localStorage.getItem('bardo-lang');
+      if (LANGS.includes(saved)) return saved;
+    } catch (e) { /* file:// or private mode: fall through to detection */ }
+    const seen = navigator.languages || [navigator.language || ''];
+    if (seen.some(l => String(l).toLowerCase().startsWith('fr'))) return 'fr';
+    if (seen.some(l => String(l).toLowerCase().startsWith('ar'))) return 'ar';
+    return 'en';
+  };
+
+  const applyLang = next => {
+    curLang = LANGS.includes(next) ? next : 'en';
+    const suffix = curLang === 'en' ? '' : cap(curLang);
+
+    document.querySelectorAll('[data-fr], [data-ar]').forEach(el => {
+      if (el.dataset.en === undefined) el.dataset.en = el.innerHTML;
+      const html = suffix ? (el.dataset[curLang] ?? el.dataset.en) : el.dataset.en;
+      el.innerHTML = html;
+      /* Hide on an empty translation, and drop the style attribute altogether
+         when it empties out, so EN -> AR -> EN leaves the DOM byte-identical. */
+      if (html === '') el.style.display = 'none';
+      else {
+        el.style.display = '';
+        if (el.getAttribute('style') === '') el.removeAttribute('style');
+      }
+    });
+
+    [['aria', 'aria-label'], ['content', 'content'], ['alt', 'alt']].forEach(([key, attr]) => {
+      document.querySelectorAll('[data-' + key + '-fr], [data-' + key + '-ar]').forEach(el => {
+        const stash = key + 'En';
+        if (el.dataset[stash] === undefined) el.dataset[stash] = el.getAttribute(attr) || '';
+        const value = suffix ? (el.dataset[key + suffix] ?? el.dataset[stash]) : el.dataset[stash];
+        el.setAttribute(attr, value);
+      });
+    });
+
+    document.documentElement.lang = curLang;
+    document.querySelectorAll('[data-lang]').forEach(btn => {
+      btn.setAttribute('aria-current', String(btn.dataset.lang === curLang));
+    });
+    try { localStorage.setItem('bardo-lang', curLang); } catch (e) {}
+    window.dispatchEvent(new Event('bardo:lang'));
+  };
+
+  /* Service names/descriptions live in datasets, not markup text. */
+  const tipOf = (el, base) => {
+    const key = curLang === 'en' ? null : base + cap(curLang);
+    return (key && el.dataset[key]) || el.dataset[base] || '';
+  };
+
+  document.addEventListener('click', e => {
+    const btn = e.target.closest && e.target.closest('[data-lang]');
+    if (btn) applyLang(btn.dataset.lang);
+  });
+  applyLang(readLang());
+
+  const nav = document.getElementById('nav');
+  const toggle = document.getElementById('menuToggle');
+  const menu = document.getElementById('mobileMenu');
+
+  const onScroll = () => {
+    const solid = window.scrollY > 80;
+    nav.classList.toggle('bg-ink/85', solid);
+    nav.classList.toggle('backdrop-blur-md', solid);
+    nav.classList.toggle('border-b', solid);
+    nav.classList.toggle('border-cream/10', solid);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const setMenu = open => {
+    menu.classList.toggle('hidden', !open);
+    menu.classList.toggle('flex', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.children[0].style.transform = open ? 'translateY(3.5px) rotate(45deg)' : '';
+    toggle.children[1].style.transform = open ? 'translateY(-3.5px) rotate(-45deg)' : '';
+  };
+  toggle.addEventListener('click', () => setMenu(menu.classList.contains('hidden')));
+  menu.querySelectorAll('.mobile-link').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  window.addEventListener('resize', () => { if (window.innerWidth >= 768) setMenu(false); });
+
+  /* Facebook has no page yet — its tile opens a small dialog instead. */
+  const soon = document.getElementById('soon');
+  const soonTriggers = document.querySelectorAll('[data-soon]');
+  const setSoon = open => {
+    soon.classList.toggle('hidden', !open);
+    soon.classList.toggle('flex', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    if (open) document.getElementById('soonClose').focus();
+    else soonTriggers[0].focus();
+  };
+  soonTriggers.forEach(t => t.addEventListener('click', e => {
+    e.preventDefault();
+    setSoon(true);
+  }));
+  document.getElementById('soonClose').addEventListener('click', () => setSoon(false));
+  soon.addEventListener('click', e => { if (e.target === soon) setSoon(false); });
+  window.addEventListener('keydown', e => { if (e.key === 'Escape' && !soon.classList.contains('hidden')) setSoon(false); });
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal:not(.svc-track)').forEach(el => io.observe(el));
+  /* The carousel track is pushed sideways on phones, so its own box sits
+     outside the viewport and can never intersect. Watch the section instead
+     and reveal the row from there. */
+  new IntersectionObserver((entries, obs) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelector('.svc-track').classList.add('in');
+        obs.disconnect();
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' })
+    .observe(document.querySelector('#services'));
+
+  /* ---------- Services carousel ---------- */
+  const svcTrack = document.querySelector('.svc-track');
+  const svcViewport = document.querySelector('.svc-viewport');
+  const svcTip = document.createElement('div');
+  svcTip.className = 'svc-tip';
+  svcTip.setAttribute('role', 'tooltip');
+  svcTip.innerHTML = '<span class="svc-tip-title"></span><span class="svc-tip-text"></span><span class="svc-tip-nudge"></span>';
+  document.body.appendChild(svcTip);
+  const tipTitle = svcTip.querySelector('.svc-tip-title');
+  const tipText = svcTip.querySelector('.svc-tip-text');
+  const tipNudge = svcTip.querySelector('.svc-tip-nudge');
+  const staticTip = document.querySelector('.svc-static-tip');
+  const staticTitle = staticTip?.querySelector('.svc-tip-title');
+  const staticText = staticTip?.querySelector('.svc-tip-text');
+
+  if (svcTrack) {
+    const items = [...svcTrack.querySelectorAll('.col-li')];
+    const total = items.length;
+    const prevBtn = document.querySelector('.svc-prev');
+    const nextBtn = document.querySelector('.svc-next');
+    /* The carousel exists only on narrow screens; desktop stays a static row. */
+    const narrow = window.matchMedia('(max-width: 767px)');
+    let active = 0;
+    let tipTarget = null;
+    let tipTimer = null;
+    let tipX = 0, tipY = 0;
+
+    /* The row is centred by flex, so item 0 is NOT at the middle. Measure each
+       item's own distance from the track centre and shift by that, otherwise
+       focusing index 0 would leave it parked at the far left. offsetLeft and
+       offsetWidth are layout values, so they stay correct even while a
+       transform is applied to the track. */
+    const shiftFor = n => {
+      const half = svcTrack.offsetWidth / 2;
+      return half - (items[n].offsetLeft + items[n].offsetWidth / 2);
+    };
+    const placeTrack = () => {
+      svcTrack.style.transform = `translate3d(${Math.round(shiftFor(active))}px, 0, 0)`;
+    };
+
+    const goTo = i => {
+      active = (i + total) % total;
+      placeTrack();
+      items.forEach((el, n) => {
+        const d = n - active;
+        const isActive = d === 0;
+        el.dataset.active = String(isActive);
+        el.tabIndex = isActive ? 0 : -1;
+        el.setAttribute('aria-hidden', String(!isActive));
+        if (!isActive) el.setAttribute('inert', '');
+        else el.removeAttribute('inert');
+      });
+      /* Phone panel always names the focused service. */
+      if (narrow.matches && staticTitle && staticText) {
+        const cur = items[active];
+        staticTitle.textContent = tipOf(cur, 'tipTitle');
+        staticText.textContent = tipOf(cur, 'tipText');
+      }
+      svcTip.classList.remove('on');
+      tipTarget = null;
+    };
+
+    const next = () => { if (narrow.matches) goTo(active + 1); };
+    const prev = () => { if (narrow.matches) goTo(active - 1); };
+
+    prevBtn?.addEventListener('click', prev);
+    nextBtn?.addEventListener('click', next);
+
+    svcViewport?.addEventListener('wheel', e => {
+      if (!narrow.matches) return;
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        goTo(active + (e.deltaX > 0 ? 1 : -1));
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    svcViewport?.addEventListener('keydown', e => {
+      if (!narrow.matches) return;
+      if (e.key === 'ArrowRight') { goTo(active + 1); e.preventDefault(); }
+      if (e.key === 'ArrowLeft') { goTo(active - 1); e.preventDefault(); }
+    });
+
+    items.forEach((el, n) => el.addEventListener('click', () => {
+      if (narrow.matches && n !== active) goTo(n);
+    }));
+
+    /* Touch / pointer drag */
+    let dragX = null, dragMoved = false;
+    svcViewport?.addEventListener('pointerdown', e => {
+      if (e.pointerType === 'mouse' || !narrow.matches) return;
+      dragX = e.clientX; dragMoved = false;
+    });
+    svcViewport?.addEventListener('pointermove', e => {
+      if (dragX === null) return;
+      if (Math.abs(e.clientX - dragX) > 40) dragMoved = true;
+    });
+    svcViewport?.addEventListener('pointerup', e => {
+      if (dragX === null) return;
+      const dx = e.clientX - dragX;
+      dragX = null;
+      if (Math.abs(dx) > 45) goTo(active + (dx < 0 ? 1 : -1));
+    });
+    svcViewport?.addEventListener('pointercancel', () => { dragX = null; });
+
+    /* ---------- Tooltip ---------- */
+    const placeTip = (x, y) => {
+      const r = svcTip.getBoundingClientRect();
+      let left = x + 16;
+      let top = y + 16;
+      if (left + r.width > window.innerWidth - 12) left = x - r.width - 16;
+      if (top + r.height > window.innerHeight - 12) top = y - r.height - 16;
+      left = Math.max(12, Math.min(left, window.innerWidth - r.width - 12));
+      top = Math.max(12, Math.min(top, window.innerHeight - r.height - 12));
+      svcTip.style.transform = `translate3d(${Math.round(left)}px, ${Math.round(top)}px, 0)`;
+    };
+
+    const showTip = (el, x, y) => {
+      tipTitle.textContent = tipOf(el, 'tipTitle');
+      tipText.textContent = tipOf(el, 'tipText');
+      tipNudge.textContent = '';
+      svcTip.classList.add('on');
+      placeTip(x, y);
+    };
+
+    document.addEventListener('mousemove', e => {
+      if (!tipTarget) return;
+      tipX = e.clientX; tipY = e.clientY;
+      placeTip(tipX, tipY);
+    }, { passive: true });
+    const hideTip = () => {
+      clearTimeout(tipTimer);
+      tipTarget = null;
+      svcTip.classList.remove('on');
+    };
+
+    const scheduleTip = el => {
+      tipTimer = setTimeout(() => showTip(el, tipX, tipY), 120);
+    };
+
+    /* Desktop only. On phones the static panel is always visible, so the
+       cursor tooltip is dead weight there. */
+    if (!narrow.matches) {
+      items.forEach(el => {
+        el.addEventListener('mouseenter', e => {
+          tipTarget = el;
+          if (e.clientX) { tipX = e.clientX; tipY = e.clientY; }
+          scheduleTip(el);
+        });
+        el.addEventListener('mousemove', e => {
+          if (!tipTarget) return;
+          tipX = e.clientX; tipY = e.clientY;
+          placeTip(tipX, tipY);
+        });
+        el.addEventListener('mouseleave', hideTip);
+      });
+    }
+
+document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') hideTip();
+    });
+
+    const syncLayout = () => {
+      if (narrow.matches) {
+        goTo(active);
+      } else {
+        /* Desktop: reset the track and re-admit every pillar to the a11y tree. */
+        svcTrack.style.transform = '';
+        items.forEach(el => {
+          el.dataset.active = 'true';
+          el.tabIndex = 0;
+          el.removeAttribute('aria-hidden');
+          el.removeAttribute('inert');
+        });
+        hideTip();
+      }
+    };
+
+    window.addEventListener('resize', syncLayout);
+    narrow.addEventListener('change', syncLayout);
+    /* A language swap re-reads the datasets the panel was filled from. Desktop
+       is left alone: the row keeps every pillar active there, which goTo()
+       would collapse back to one. */
+    window.addEventListener('bardo:lang', () => { if (narrow.matches) goTo(active); });
+
+    /* Recompute after layout settles so offsetWidth is final. */
+    syncLayout();
+    if (document.fonts?.ready) document.fonts.ready.then(syncLayout);
+    window.addEventListener('load', syncLayout);
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const href = a.getAttribute('href');
+      /* href="#" belongs to the Facebook dialog trigger, not to scrolling. */
+      if (href.length < 2) return;
+      const t = document.querySelector(href);
+      if (!t) return;
+      e.preventDefault();
+      window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 64, behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
